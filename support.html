@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<title>PromptFox — Support</title>
+<style>
+  :root { --ink:#1c1c2e; --dim:#6e6e85; --accent:#E8590C; --teal:#30B0C7; --bg:#f8f6f4; --card:#ffffff; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e8e8f2; --dim:#9a9ab0; --bg:#14101a; --card:#1e1826; }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 16px/1.65 -apple-system, "Segoe UI", sans-serif; color: var(--ink);
+         background: var(--bg); padding: 40px 20px 80px; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .logo { display:flex; align-items:center; gap:12px; margin-bottom: 8px; }
+  .mark { width:44px; height:44px; border-radius:10px; font:28px/44px sans-serif;
+          text-align:center; background:linear-gradient(135deg,#2b1c4a,#E8590C); }
+  h1 { font-size: 26px; }
+  .tag { color: var(--dim); margin-bottom: 28px; }
+  h2 { font-size: 19px; margin: 34px 0 10px; color: var(--accent); }
+  .card { background: var(--card); border-radius: 14px; padding: 22px 24px; margin: 14px 0;
+          box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  a { color: var(--teal); }
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  .de { border-left: 3px solid var(--accent); padding-left: 14px; margin-top: 10px;
+        color: var(--dim); font-size: 15px; }
+  footer { margin-top: 44px; color: var(--dim); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><div class="mark">🦊</div><h1>PromptFox</h1></div>
+  <p class="tag">The AI prompt keyboard — local-first and private.</p>
+
+  <h2>Support</h2>
+  <div class="card">
+    <p>Questions, problems, or ideas? Write to us — we answer personally:</p>
+    <p style="margin-top:8px"><strong>📧 <a href="mailto:promptfox@psystream.net">promptfox@psystream.net</a></strong></p>
+    <p class="de">Fragen oder Probleme? Schreiben Sie uns — wir antworten persönlich.</p>
+  </div>
+
+  <h2>Frequently asked</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Where is my data?</strong> Only on your iPhone. PromptFox has no server,
+          no account, and makes no network connections. See the
+          <a href="privacy.html">privacy policy</a>.</li>
+      <li><strong>How do I enable the PromptFox keyboard?</strong> Settings ›
+          General › Keyboard › Keyboards › Add New Keyboard › PromptFox. Then hold the
+          globe key in any text field and pick PromptFox.</li>
+      <li><strong>Deck or list?</strong> In PromptFox, Settings › PromptFox keyboard ›
+          Keyboard style switches between the Prompt Deck (icon keys), a text list, and a
+          list with pictures. On the Deck: tap pastes, hold peeks.</li>
+      <li><strong>Why does the keyboard offer “Allow Full Access”?</strong> Reading your
+          prompts never needs it. It is only required if you want the keyboard’s
+          “Add” button to hand selected text back to the app. Even with Full Access on,
+          nothing is ever transmitted anywhere — the app has no network code at all.</li>
+      <li><strong>How do I back up my vault?</strong> Settings › Backup &amp; Transfer ›
+          Prepare export, then share the single PromptFox-Export.json file — you own it.
+          Bring it onto any device running PromptFox with Import from JSON.</li>
+      <li><strong>Prompt Doctor and the other intelligence features are missing.</strong>
+          They run on Apple Intelligence and appear only on devices and iOS versions that
+          provide it. Settings › Intelligence shows what this device supports. Everything
+          else works everywhere.</li>
+    </ul>
+  </div>
+
+  <h2>Impressum (§ 5 ECG)</h2>
+  <div class="card">
+    <p>
+      <strong>Helmut Leutgeb</strong><br>
+      8052 Seiersberg-Pirka, Österreich<br>
+      E-Mail: <a href="mailto:promptfox@psystream.net">promptfox@psystream.net</a>
+    </p>
+    <p style="margin-top:10px; font-size: 14px; color: var(--dim)">
+      PromptFox is currently distributed free of charge. Should paid features be added,
+      this section will be extended with the required commercial-register and VAT
+      details.</p>
+  </div>
+
+  <footer>PromptFox · made in Austria · this page is the App Store Support URL ·
+    <a href="privacy.html">Privacy Policy</a></footer>
+</div>
+</body>
+</html>
