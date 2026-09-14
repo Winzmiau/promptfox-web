@@ -11,8 +11,8 @@ Static HTML, no build step, hosted on GitHub Pages.
 
 ## Addresses
 
-- Canonical: `https://promptfox.psystream.net/` (custom domain, once the DNS record exists — see below)
-- Fallback: `https://winzmiau.github.io/promptfox-web/`
+- Canonical: `https://promptfox.psystream.net/` (live since 2026-09-14, HTTPS enforced, Let's Encrypt certificate renewed by GitHub)
+- Old address `https://winzmiau.github.io/promptfox-web/` redirects (301) to the canonical one
 
 Support mail: `promptfox@psystream.net` (iCloud+ custom domain; DNS on Cloudflare).
 
@@ -21,7 +21,7 @@ Support mail: `promptfox@psystream.net` (iCloud+ custom domain; DNS on Cloudflar
 Edit a file on github.com (pencil icon) or commit and push. Pages redeploys in about a minute.
 The two store URLs never change once submitted — edit the pages, never rename them.
 
-## Custom domain
+## Custom domain (set up 2026-09-14 — for reference if it ever needs redoing)
 
 1. Cloudflare → psystream.net → DNS → Records → Add: **CNAME** `promptfox` → `winzmiau.github.io`, proxy **off** (grey cloud).
 2. GitHub → this repo → Settings → Pages → Custom domain `promptfox.psystream.net` → Save; tick **Enforce HTTPS** once the certificate is issued (a few minutes).
