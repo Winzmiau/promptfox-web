@@ -61,7 +61,7 @@
 <meta name="description" content="A private, reusable AI prompt keyboard for iPhone: save a prompt once, fill the variables, format it for the right tool, insert it in compatible apps.">
 <meta name="color-scheme" content="dark">
 <meta property="og:title" content="PromptFox">
-<meta property="og:description" content="A visual prompt keyboard for iPhone. Save a prompt once, fill the changing parts, format it for the right tool, and paste it across compatible apps.">
+<meta property="og:description" content="A visual prompt keyboard for iPhone. Save a prompt once, fill the changing parts, format it for the right tool, and insert it in compatible apps.">
 <meta property="og:image" content="https://promptfox.psystream.net/assets/icon.png">
 <meta property="og:url" content="https://promptfox.psystream.net/">
 <link rel="canonical" href="https://promptfox.psystream.net/">
@@ -323,6 +323,7 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
 /* ---------- footer ---------- */
 footer { padding-block: var(--s-12); color: var(--ink-2); font-size: 0.95rem; border-top: 1px solid var(--line); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-4) var(--s-8); align-items: center; }
+.credits { flex-basis: 100%; margin: 0; font-size: 0.8rem; color: var(--ink-3, #8a93a6); }
 footer ul { list-style: none; display: flex; gap: var(--s-6); flex-wrap: wrap; }
 footer a { color: var(--ink-2); }
 footer a:hover { color: var(--ink); }
@@ -450,7 +451,7 @@ footer a:hover { color: var(--ink); }
           <li>
             <span class="n">Fill what changes</span>
             <h3>Give the variables a value</h3>
-            <p>Fill each variable, or let it fall back to the collection default, then the global one. Choose the target tool and the prompt is formatted for it. Every edit is kept in version history; the template stays as it is.</p>
+            <p>Fill each variable, or let it fall back to the collection default, then the global one. Choose the target tool and the prompt is formatted for it. Text edits are kept in version history; the template itself stays as it is.</p>
             <div class="crop crop-variables">
               <img src="assets/shots/07_detail.jpg" width="460" height="1000" loading="lazy" alt="The same prompt's Variables list: subject, style and lighting, each with a field for its value, and the hint that empty ones fall back to collection and global defaults.">
             </div>
@@ -550,7 +551,7 @@ footer a:hover { color: var(--ink); }
             <img class="shot" src="assets/shots/04_composer_styles.jpg" width="460" height="1000" loading="lazy" alt="Composer “Style” step: illustrated tiles such as Photoreal, Cinematic, 3D render, Watercolor, Oil painting and Ink sketch, with Cinematic selected.">
             <div>
               <h3>Build visual prompts, block by block.</h3>
-              <p>The guided Composer walks through styles, settings, weather, lighting, materials and more — 149 building blocks, 124 of them illustrated; camera, mood and aspect are symbol-driven. The result is a complete, ordered prompt saved to your library. PromptFox does not generate images.</p>
+              <p>The guided Composer walks through styles, settings, weather, lighting, materials and more — 148 built-in blocks, 124 of them illustrated; camera, mood and aspect use symbols. Add a subject and blocks of your own. The result is a complete, ordered prompt saved to your library. PromptFox does not generate images.</p>
             </div>
           </article>
         </div>
@@ -574,7 +575,7 @@ footer a:hover { color: var(--ink); }
         <dl class="craft">
           <div>
             <dt>Full version history</dt>
-            <dd>Every edit becomes a new version. Open any earlier version, copy it, or make it a template of its own.</dd>
+            <dd>Every change to a prompt’s text is kept as a version. Open any earlier version, copy it, or make it a template of its own.</dd>
           </div>
           <div>
             <dt>Variables that cascade</dt>
@@ -624,6 +625,7 @@ footer a:hover { color: var(--ink); }
         <li><a href="support.html" lang="de">Impressum</a></li>
       </ul>
     </nav>
+    <p class="credits">Deck glyphs build on <a href="https://lucide.dev">Lucide</a> icons (ISC) and Feather (MIT) · <a href="THIRD_PARTY_NOTICES.txt">licence notices</a></p>
     <p>PromptFox · made in Austria</p>
   </div>
 </footer>
