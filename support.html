@@ -36,6 +36,8 @@
   footer { margin-top: 44px; color: var(--dim); font-size: 13px; }
   .home { margin-bottom: 4px; }
   .home a { display: inline-flex; align-items: center; min-height: 44px; }
+  .gap { margin-top: 8px; }
+  p > strong > a[href^="mailto:"], footer a { display: inline-flex; align-items: center; min-height: 44px; }
 </style>
 </head>
 <body>
@@ -47,8 +49,8 @@
   <h2>Support</h2>
   <div class="card">
     <p>Questions, problems, or ideas? Write to us — we answer personally:</p>
-    <p style="margin-top:8px"><strong><span aria-hidden="true">📧</span> <a href="mailto:promptfox@psystream.net">promptfox@psystream.net</a></strong></p>
-    <p style="margin-top:8px">It helps to include your app version, iOS version and iPhone model, and the steps that lead to the problem. Please keep private prompt text out of screenshots.</p>
+    <p class="gap"><strong><span aria-hidden="true">📧</span> <a href="mailto:promptfox@psystream.net">promptfox@psystream.net</a></strong></p>
+    <p class="gap">It helps to include your app version, iOS version and iPhone model, and the steps that lead to the problem. Please keep private prompt text out of screenshots.</p>
     <p class="de" lang="de">Fragen oder Probleme? Schreiben Sie uns — wir antworten persönlich.</p>
   </div>
 
@@ -62,8 +64,10 @@
           General › Keyboard › Keyboards › Add New Keyboard › PromptFox. Then hold the
           globe key in a text field that allows custom keyboards and pick PromptFox.</li>
       <li><strong>Deck or list?</strong> In PromptFox, Settings › PromptFox keyboard ›
-          Keyboard style switches between the Prompt Deck (icon keys), a text list, and a
-          list with pictures. On the keyboard’s Deck: tap inserts the prompt, hold shows its name.</li>
+          Keyboard style switches between the Prompt Deck (pads), a text list, and a list
+          with pictures; a new library starts on the Prompt Deck. On the keyboard’s Deck, the
+          chips next to Add switch between your decks; tap a pad to insert its prompt, hold it
+          to see its name.</li>
       <li><strong>Why does the keyboard offer “Allow Full Access”?</strong> Reading your
           prompts never needs it. It is only required if you want the keyboard’s
           “Add” button to hand selected text back to the app. Even with Full Access on,

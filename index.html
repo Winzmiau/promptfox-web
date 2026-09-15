@@ -2,37 +2,47 @@
 <html lang="en">
 <head>
 <!--
-  PromptFox landing — final (2026-09-14). Built on draft A, with grafts from B and C.
+  PromptFox landing — v4 pictures (2026-09-15). The 2026-09-14 final, updated to the store-polish app.
 
   SIGNATURE ELEMENT
-  A CSS-built Prompt Deck, full width of the hero, directly under the promise: a chip row
-  (All · Text · Image · Code) above a 6-column grid of real key faces — bundled cyberpunk and
-  pixel key art, Holo Grid 67 glyphs on neon caps, story pictures, styled text pads.
-  Exactly ONE pad is lit with the four-pass glow recipe. Under prefers-reduced-motion:
-  no-preference the lit state crossfades between three caps (opacity only, 18 s period, a pad
-  is always lit, the first one is lit at t = 0). Six columns at every width — the keyboard's own
-  geometry (shot 01), 46 px pads at 375; on phones the text pads show only their lines glyph, as
-  the keyboard itself does until you hold to peek. The words come FIRST: the
-  core promise is the H1, the deck follows it on every screen. The deck returns as a 2 x 2
-  marker beside each section numeral, its lit pad walking 01 -> 04 down the page: the fox as a
-  navigation device. Everything else is ink on Night with one hairline per section.
+  A CSS-built Prompt Deck, full width of the hero, directly under the promise: the keyboard's chip
+  row (Add | Everyday · Studio) above a 6-column grid modelled pad for pad on the starter Everyday
+  deck (Seed.swift): six story pictures, two cyberpunk key-art pads, twelve Holo Grid 67 glyphs on
+  neon caps, four label caps (TL;DR, ELI5, SAY NO, POST). 24 pads, no blanks.
+  Exactly ONE pad is lit with the four-pass glow recipe; label caps are never lit, and the send and
+  generate-image glyphs are never the lit pad. Under prefers-reduced-motion: no-preference the lit
+  state crossfades between three glyph caps (opacity only, 18 s period, a pad is always lit, the first
+  one is lit at t = 0). Six columns at every width — the keyboard's own geometry, 46 px pads at 375;
+  label text scales with the pad. The words come FIRST: the core promise is the H1, the deck follows
+  it on every screen. The deck returns as a 2 x 2 marker beside each section numeral, its lit pad
+  walking 01 -> 04 down the page. Everything else is ink on Night with one hairline per section.
+
+  IMAGE LAW
+  Captures (assets/shots/v4-*) are app screenshots, resized and cropped, never retouched; always
+  framed (1px line border, 8px radius). Illustrations (assets/art/) are AI-generated brand art
+  (ChatGPT / OpenAI): never in the hero, never beside the CSS deck, never behind a capture;
+  borderless, faded into Night, always with a visible "Illustration" caption. They ship
+  BYTE-IDENTICAL with their embedded C2PA Content Credentials — never resize, re-encode or optimise
+  them; crop with CSS only. The crops never show source rows below 570 (wave) or 560 (fox): the pad
+  grid and the pad controller in those files must never be on screen. No play / remix / perform /
+  speed wording near them.
 
   TOKEN PLAN
   Colour (semantic law binds):
     --night   #080B14  page field                --indigo  #11182E raised surfaces
     --ember   #F47A24  identity + the one accent --amber   #FFB347 secondary warmth (small labels)
     --cyan    #36C5F0  links, step markers       --teal    #45DE9E verified/selected, never colour-only
-    --violet  #7547D9  text pads only            --ink     #F7F9FC primary copy
-    --ink-2   #AAB3C2  secondary copy            --ink-3   #8A93A6 large section numerals only
+    --ink     #F7F9FC  primary copy              --ink-2   #AAB3C2 secondary copy
+    --ink-3   #8A93A6  large section numerals only
     Lit pad pair: body #F46300 / core #FCD26E / rim #7C250E; highlight #FFF9EA.
-    Deck plate #0C050C, far dark #000507. Idle caps sit on the app's own cap palette mixed
-    down towards Indigo/far dark: #2E8CFF #16E0A6 #B44BFF #E934C8 #FF5A1F #22D3EE #6E5BFF.
-    Code pad: #2E8CFF mixed 68 % / 55 % into Night (#2263B4 -> #1D5295).
-    Text pads: #7547D9 -> #54359E (Violet 70 % into Night).
+    Deck plate #0C050C, far dark #000507. Idle caps and label caps use the app's cap palette mixed
+    down — centre 42 % into Indigo, edge 18 % into far dark, border = cap colour x 0.45:
+    #2E8CFF #16E0A6 #B44BFF #E934C8 #FF5A1F #22D3EE #6E5BFF #FF2D55 #FF8A3D #FFC12E #7DE03A.
     Contrast, computed (WCAG 2.x relative luminance):
       ink/night 18.64 · ink-2/night 9.30 · cyan/night 9.74 · ember/night 7.17 · amber/night 11.04
       teal/night 11.42 · night-on-teal 11.42 · ink/indigo 16.68 · ink-2/indigo 8.32
-      ink-3/night 6.37 (large) · ink on violet pad 5.44 · ink on code pad 5.67 · ink-2 on chip 8.66
+      ink-3/night 6.37 (large) · ink-2 on chip 8.66 · ink on label caps (centre stop):
+      TL;DR 5.80 · ELI5 5.86 · SAY NO 5.96 · POST 8.50
   Glow recipe (Holo Grid masters), unit u = 0.22 x pad side:
       glow  : blur 1.00 u, body beyond the box 0.0176 x side, lit-body at opacity .30
       edge  : blur 0.78 u, lit-core at .45
@@ -43,17 +53,19 @@
     modular scale 1.333 from 16-17 px: 17 / 22.7 / 30.2 / 40.3 / 53.7, fluid with clamp().
     display: line-height 1.08, letter-spacing -0.02em, text-wrap: balance;
     body: 1.55, measure <= 66ch. mono (ui-monospace) only for {{variables}} and tool flags.
+    label caps: ui-rounded 800 at 0.24 x pad side.
   Layout:
     spacing scale 4/8/12/16/24/32/48/64/96; layout max 1100px; prose max 720px.
     Sections are numbered; at >= 860px a sticky 168px margin column carries the numeral and
-    the deck marker. Radius 6px on UI, 8px on the icon, 12px on pads and the deck plate.
-    No drop shadows except the glow recipe. No inline style attributes.
+    the deck marker. Radius 6px on UI, 8px on the icon, captures and illustrations, 12px on pads
+    and the deck plate. No drop shadows except the glow recipe. No inline style attributes.
 
   ACCESSORY REMOVED BEFORE FINISHING
   The two short ember hairlines that flanked "Coming soon to the App Store". The brief asks
   for plain text; the flourishes made it read like a badge. Review round: also the hero's
   requirements line ("Requires iOS 17 …"), which duplicated Craft → Requirements and the footer
-  and pushed the deck below the fold at 375 x 812.
+  and pushed the deck below the fold at 375 x 812. v4 pictures round: the holographic stage plate
+  behind the captures (AI art behind product proof) and a second, studio-set fox illustration.
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,8 +95,6 @@
   --amber: #FFB347;
   --cyan: #36C5F0;
   --teal: #45DE9E;
-  --violet: #7547D9;
-  --violet-deep: #54359E;
   --ink: #F7F9FC;
   --ink-2: #AAB3C2;
   --ink-3: #8A93A6;
@@ -184,37 +194,38 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
   border-radius: var(--radius-pad);
   padding: var(--s-3);
 }
-.chips { list-style: none; margin: 0 0 var(--s-3); display: flex; gap: var(--s-2); flex-wrap: wrap; }
+.chips { list-style: none; margin: 0 0 var(--s-3); display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center; }
 .chips li {
   font-size: 0.8rem; line-height: 1;
   padding: 7px 10px; border-radius: var(--radius-ui);
-  background: #171223; color: var(--ink-2);
-  display: inline-flex; align-items: center; gap: 6px;
+  background: #171223; color: var(--ink-2); border: 1.5px solid transparent;
+  display: inline-flex; align-items: center; gap: 5px;
 }
-.chips li::before { content: ""; width: 10px; height: 10px; border: 1.5px solid currentColor; border-radius: 2px; opacity: .75; }
-.chips li.sel { background: var(--teal); color: var(--night); font-weight: 600; }
-.chips li.sel::before { border-radius: 50%; background: currentColor; border-color: transparent; width: 8px; height: 8px; }
+.chips li.add { position: relative; margin-right: var(--s-3); background: transparent; border-color: var(--teal); color: var(--teal); font-weight: 600; }
+.chips li.add::before { content: "+"; font-weight: 700; }
+.chips li.add::after { content: ""; position: absolute; top: 3px; bottom: 3px; right: -11px; width: 1px; background: #2A2238; }   /* the keyboard's divider */
+.chips li.sel { background: var(--teal); border-color: var(--teal); color: var(--night); font-weight: 600; }
 .pads { list-style: none; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--s-2); }
 .pad {
   position: relative; isolation: isolate;
   aspect-ratio: 1 / 1; border-radius: var(--radius-pad);
   background: #141020; border: 1px solid #1E1730;
 }
-.pad img { position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-.pad.empty { background: #0F0A14; border-color: #17111F; }
-
-/* styled text and code pads */
-.pad.text, .pad.code {
-  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px;
-  color: var(--ink); font-weight: 600; font-size: clamp(0.72rem, 2.2vw, 0.95rem); letter-spacing: -0.01em;
+/* the real pad side drives label size and glow at every width (viewport breakpoints lag between 640 and 899) */
+@supports (width: 1cqi) {
+  .pads { container-type: inline-size; }
+  .pad { --pad: calc((100cqi - 5 * var(--s-2)) / 6); --u: calc(var(--pad) * 0.22); }
 }
-.pad.text { background: linear-gradient(160deg, var(--violet) 0%, var(--violet-deep) 100%); border-color: #492F8A; }
-.pad.text { font-size: 0; gap: 0; }   /* phones: the lines glyph only, as the keyboard shows until you hold to peek */
-.pad.code { background: linear-gradient(160deg, #2263B4 0%, #1D5295 100%); border-color: #1B4C8A; font-family: var(--mono); font-weight: 500; }
-.pad .lines { width: 34%; height: 24%; background:
-  linear-gradient(var(--ink) 0 0) 0 0 / 100% 2px no-repeat,
-  linear-gradient(var(--ink) 0 0) 0 50% / 70% 2px no-repeat,
-  linear-gradient(var(--ink) 0 0) 0 100% / 88% 2px no-repeat; opacity: .92; }
+.pad img { position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+
+/* label caps — a short label on an idle neon cap (TL;DR, ELI5, SAY NO, POST); never lit */
+.pad.label {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 4%; color: var(--ink);
+  font-family: ui-rounded, "SF Pro Rounded", var(--font);
+  font-weight: 800; font-size: calc(var(--pad) * 0.24); line-height: 1.02; letter-spacing: 0;
+}
+.pad.label span { position: relative; z-index: 2; }
 
 /* neon caps with a Holo Grid 67 glyph — idle: cap colour mixed down onto Indigo / far dark */
 .pad.cap { z-index: 3; }
@@ -226,7 +237,11 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
 .cap-magenta { background: radial-gradient(90% 90% at 50% 40%, #6C246F 0%, #2A0D2A 100%); border-color: #69175A; }
 .cap-cyan    { background: radial-gradient(90% 90% at 50% 40%, #18677F 0%, #062A31 100%); border-color: #0F5F6B; }
 .cap-indigo  { background: radial-gradient(90% 90% at 50% 40%, #383486 0%, #141434 100%); border-color: #322973; }
-.pad.cap::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 0;
+.cap-crimson { background: radial-gradient(90% 90% at 50% 40%, #75213E 0%, #2E0C15 100%); border-color: #731426; }
+.cap-apricot { background: radial-gradient(90% 90% at 50% 40%, #754834 0%, #2E1D11 100%); border-color: #733E1B; }
+.cap-amber   { background: radial-gradient(90% 90% at 50% 40%, #755F2E 0%, #2E270E 100%); border-color: #735715; }
+.cap-lime    { background: radial-gradient(90% 90% at 50% 40%, #3E6C33 0%, #162C10 100%); border-color: #38651A; }
+.pad.cap::before, .pad.label::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 0;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.10), inset 0 -2px 0 rgba(0,0,0,.35); }
 
 /* the lit layer — four passes, glow : edge : core : highlight = 1.00 : 0.78 : 0.51 : 0.146 on u */
@@ -270,7 +285,7 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
   }
 }
 
-.deck-figure figcaption { color: var(--ink-2); font-size: 0.9rem; margin-top: var(--s-3); text-align: center; }
+.deck-figure figcaption { color: var(--ink-2); font-size: 0.9rem; margin-top: var(--s-3); text-align: center; text-wrap: balance; }
 
 /* ---------- numbered sections ---------- */
 .sec { padding-block: var(--s-16); border-top: 1px solid var(--line); }
@@ -298,9 +313,6 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
   border-radius: 8px; border: 1px solid var(--line); background: var(--indigo);
 }
 .crop img { width: 100%; height: 100%; object-fit: cover; }
-.crop-template img  { object-position: 50% 12%; }   /* library: chips plus the first card row */
-.crop-variables img { object-position: 50% 90%; }
-.crop-keyboard img  { object-position: 50% 100%; }
 .novice { margin-top: var(--s-12); padding: var(--s-6); border: 1px solid var(--line); border-radius: 8px; background: var(--indigo); max-width: 720px; }
 .novice h3 { font-size: var(--t-0); }
 .novice p { margin-top: var(--s-2); color: var(--ink-2); }
@@ -326,35 +338,66 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
 .packs { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); color: var(--ink); margin-top: var(--s-2); }
 .packs li::after { content: "·"; color: var(--cyan); margin-left: var(--s-3); }
 .packs li:last-child::after { content: none; }
+/* ---------- illustrations: AI art, byte-identical files, cropped by CSS only ---------- */
+/* crop law — wave shows source rows 0-570 at every width (pad grid starts ~590);
+   fox shows rows 0-560 below 640px and 0-556 above (paws and controller start ~600) */
+.art { margin: var(--s-12) 0 0; max-width: 852px; }
+.art-end .art { margin-top: 0; }
+.art-end .art + .art { margin-top: var(--s-12); }
+.art-frame { position: relative; overflow: hidden; border-radius: 8px; background: var(--night); }
+.art-frame img { position: absolute; top: 0; max-width: none; height: auto; }
+.art figcaption { margin-top: var(--s-3); color: var(--ink-2); font-size: 0.9rem; max-width: 60ch; }
+.art .kind { display: inline-block; margin-right: var(--s-2); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+.art-wave { aspect-ratio: 8 / 5;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 5%, #000 70%, transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 5%, #000 70%, transparent 100%); }
+.art-wave img { right: 0; width: 183.33%; }            /* phones: source x 760-1672, rows 0-570 */
+.art-fox { aspect-ratio: 1 / 1;
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 72%, transparent 100%);
+          mask-image: linear-gradient(180deg, #000 0, #000 72%, transparent 100%); }
+.art-fox img { left: -175%; width: 298.57%; }          /* phones: head crop, source x 980-1540, rows 0-560 */
 
 /* ---------- footer ---------- */
 footer { padding-block: var(--s-12); color: var(--ink-2); font-size: 0.95rem; border-top: 1px solid var(--line); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-4) var(--s-8); align-items: center; }
-.credits { flex-basis: 100%; margin: 0; font-size: 0.8rem; color: var(--ink-3, #8a93a6); }
+.credits { flex-basis: 100%; margin: 0; padding-inline-end: max(0px, calc(100% - 66ch)); font-size: 0.8rem; color: var(--ink-2); }
 footer ul { list-style: none; display: flex; gap: var(--s-6); flex-wrap: wrap; }
 footer a { color: var(--ink-2); }
 footer ul a { display: inline-flex; align-items: center; min-height: 44px; }
 footer a:hover { color: var(--ink); }
 
+/* ---------- 44 px tap targets ---------- */
+.lockup { min-height: 44px; }
+.skip { display: inline-flex; align-items: center; min-height: 44px; }
+.more a { display: inline-flex; align-items: center; min-height: 44px; }
+.credits a { display: inline-block; padding: 14px 3px; margin: -14px -3px; }
+
 /* ---------- wider screens ---------- */
 @media (min-width: 640px) {
   :root { --pad: 90px; }
   .hero-words .lede { font-size: var(--t-1); line-height: 1.35; }
-  .pad.text { font-size: clamp(0.72rem, 2.2vw, 0.95rem); gap: 6px; }
   .deck { padding: var(--s-4); }
   .chips { margin-bottom: var(--s-4); }
   .chips li { font-size: 0.85rem; padding: 8px 12px; }
-  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); }
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--s-6); }
+  .steps li { display: grid; grid-row: span 4; grid-template-rows: subgrid; align-content: start; }
   .frame { grid-template-columns: 300px minmax(0, 1fr); gap: var(--s-12); }
   .frame.flip { grid-template-columns: minmax(0, 1fr) 300px; }
   .frame.flip .shot { order: 2; }
   .facts { grid-template-columns: 1fr 1fr; gap: var(--s-8) var(--s-12); }
   .craft { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .art-wave { aspect-ratio: 12 / 5; }
+  .art-wave img { width: 122.22%; }
+  .art-fox { aspect-ratio: 21 / 9; }
+  .art-fox img { width: 129%; left: -13%; }
 }
 @media (min-width: 860px) {
   .sec { padding-block: var(--s-24); }
   .sec-grid { grid-template-columns: 168px minmax(0, 1fr); gap: var(--s-12); }
   .sec-head { flex-direction: column; align-items: flex-start; position: sticky; top: var(--s-8); align-self: start; }
+  .art-wave { aspect-ratio: 1672 / 570; }
+  .art-wave img { width: 100%; }
+  .art-end .art { grid-column: 2; }
 }
 @media (min-width: 900px) {
   :root { --pad: 124px; }
@@ -396,41 +439,43 @@ footer a:hover { color: var(--ink); }
     </div>
 
     <figure class="deck-figure">
-      <div class="deck" role="img" aria-label="The Prompt Deck keyboard: a filter row reading All, Text, Image and Code above a grid of key faces — styled text pads such as Explain and Summarize, a code pad, story pictures of a fox, cyberpunk and pixel-art fox key art, and luminous glyphs on neon caps. One cap is lit.">
+      <div class="deck" role="img" aria-label="The Prompt Deck keyboard with the Everyday deck: an Add button and the deck chips Everyday and Studio above 24 pads in four rows of six — six fox story pictures, two cyberpunk fox key-art pads, twelve luminous glyphs on neon caps, and four label caps reading TL;DR, ELI5, SAY NO and POST. One pad is lit.">
         <ul class="chips">
-          <li class="sel">All</li>
-          <li>Text</li>
-          <li>Image</li>
-          <li>Code</li>
+          <li class="add">Add</li>
+          <li class="sel">Everyday</li>
+          <li>Studio</li>
         </ul>
         <ul class="pads">
-          <li><div class="pad text"><span class="lines"></span>Explain</div></li>
-          <li><div class="pad"><img src="assets/deck/vulpes_a_language_of_light.jpg" width="288" height="288" alt=""></div></li>
-          <li><div class="pad cap cap-ember on"><img src="assets/glyphs/I50-prompt-spark.png" width="256" height="256" alt=""></div></li>
-          <li><div class="pad"><img src="assets/deck/cyber_fox_den_home.png" width="144" height="144" alt=""></div></li>
-          <li><div class="pad text"><span class="lines"></span>Summarize</div></li>
-          <li><div class="pad cap cap-green"><img src="assets/glyphs/I28-clipboard-paste.png" width="256" height="256" alt=""></div></li>
-          <li><div class="pad"><img src="assets/deck/pixel_foxglow_light.png" width="144" height="144" alt=""></div></li>
-          <li><div class="pad cap cap-blue cycle cycle-b"><img src="assets/glyphs/I33-tailcode-brackets.png" width="256" height="256" alt=""></div></li>
-          <li><div class="pad"><img src="assets/deck/vulpes_pulsar_wayfinding.jpg" width="288" height="288" alt=""></div></li>
-          <li><div class="pad code">&lt;/&gt;</div></li>
-          <li><div class="pad cap cap-purple"><img src="assets/glyphs/I20-paw-gear.png" width="256" height="256" alt=""></div></li>
-          <li><div class="pad"><img src="assets/deck/cyber_foxeye_camera.png" width="144" height="144" alt=""></div></li>
-          <li><div class="pad text"><span class="lines"></span>Email</div></li>
-          <li><div class="pad cap cap-magenta cycle cycle-c"><img src="assets/glyphs/I53-tail-rewrite.png" width="256" height="256" alt=""></div></li>
-          <li><div class="pad"><img src="assets/deck/cyber_tailfire_launch.png" width="144" height="144" alt=""></div></li>
+          <li><div class="pad"><img src="assets/deck/vulpes_through_the_ember_gate.jpg" width="288" height="288" alt=""></div></li>
+          <li><div class="pad cap cap-purple"><img src="assets/glyphs/I65-ember-send.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad cap cap-crimson cycle cycle-b"><img src="assets/glyphs/I53-tail-rewrite.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad"><img src="assets/deck/cyber_fox_ear_microphone.png" width="144" height="144" alt=""></div></li>
+          <li><div class="pad cap cap-blue"><img src="assets/glyphs/I51-prism-model-switch.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad label cap-amber"><span>TL;DR</span></div></li>
+
+          <li><div class="pad cap cap-purple cycle cycle-c"><img src="assets/glyphs/I21-foxglow-light.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad label cap-lime"><span>ELI5</span></div></li>
+          <li><div class="pad"><img src="assets/deck/vulpes_home_signal_dawn_at_the_beacon.jpg" width="288" height="288" alt=""></div></li>
+          <li><div class="pad cap cap-indigo"><img src="assets/glyphs/I54-compact-summarize.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad cap cap-apricot"><img src="assets/glyphs/I52-foxeye-generate-image.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad"><img src="assets/deck/vulpes_the_ice_archive.jpg" width="288" height="288" alt=""></div></li>
+
+          <li><div class="pad"><img src="assets/deck/cyber_tail_talk.png" width="144" height="144" alt=""></div></li>
+          <li><div class="pad cap cap-magenta"><img src="assets/glyphs/I49-aurora-mixer.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad cap cap-ember"><img src="assets/glyphs/I10-foxeye-camera.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad label cap-green"><span>SAY<br>NO</span></div></li>
+          <li><div class="pad"><img src="assets/deck/vulpes_hydroponic_night.jpg" width="288" height="288" alt=""></div></li>
+          <li><div class="pad cap cap-cyan"><img src="assets/glyphs/I37-sentinel-shield.png" width="256" height="256" alt=""></div></li>
+
+          <li><div class="pad cap cap-indigo"><img src="assets/glyphs/I29-foxday-calendar.png" width="256" height="256" alt=""></div></li>
           <li><div class="pad"><img src="assets/deck/vulpes_the_magnetic_orchard.jpg" width="288" height="288" alt=""></div></li>
-          <li><div class="pad cap cap-cyan"><img src="assets/glyphs/I01-fox-den-home.png" width="256" height="256" alt=""></div></li>
-          <li><div class="pad"><img src="assets/deck/pixel_tail_talk.png" width="144" height="144" alt=""></div></li>
-          <li><div class="pad"><img src="assets/deck/cyber_foxnose_compass.png" width="144" height="144" alt=""></div></li>
-          <li><div class="pad text"><span class="lines"></span>Rewrite</div></li>
-          <li><div class="pad cap cap-indigo"><img src="assets/glyphs/I27-twin-fox-copy.png" width="256" height="256" alt=""></div></li>
-          <li><div class="pad"><img src="assets/deck/cyber_melody_tail.png" width="144" height="144" alt=""></div></li>
-          <li><div class="pad empty"></div></li>
-          <li><div class="pad empty"></div></li>
+          <li><div class="pad cap cap-magenta"><img src="assets/glyphs/I32-terminal-den.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad cap cap-crimson on"><img src="assets/glyphs/I50-prompt-spark.png" width="256" height="256" alt=""></div></li>
+          <li><div class="pad label cap-blue"><span>POST</span></div></li>
+          <li><div class="pad"><img src="assets/deck/vulpes_one_quiet_orbit.jpg" width="288" height="288" alt=""></div></li>
         </ul>
       </div>
-      <figcaption>The Prompt Deck keyboard, built from key faces you design yourself. One pad. One prepared prompt.</figcaption>
+      <figcaption>The Prompt Deck keyboard with the ready-made Everyday deck, redrawn for this page — every pad yours to redesign. One pad. One prepared prompt.</figcaption>
     </figure>
   </section>
 
@@ -451,25 +496,25 @@ footer a:hover { color: var(--ink); }
           <li>
             <span class="n">Save once</span>
             <h3>Write it in the library</h3>
-            <p>Write a prompt in the PromptFox app, or start from one of seven offline packs. Mark the parts that change as <code>{{variables}}</code> and give them defaults. Keep it in a collection.</p>
-            <div class="crop crop-template">
-              <img src="assets/shots/05_library.jpg" width="460" height="1000" loading="lazy" alt="Library screen: the filter row and the first prompt cards, Image prompt builder and Explain a concept, each tagged with its target tool.">
+            <p>Write a prompt in the PromptFox app, or start from the 36 ready prompts a new library comes with, or from one of seven offline packs. Mark the parts that change as <code>{{variables}}</code> and give them defaults. Keep it in a collection.</p>
+            <div class="crop">
+              <img src="assets/shots/v4-crop-library.jpg" width="680" height="680" loading="lazy" alt="Prompts tab: an Add New button and the filters All, Text, Image and more above picture cards — Image prompt builder, tagged Midjourney +1, and Explain a concept, tagged ChatGPT +1, both starred, each showing its template with {{variables}} and a Use button.">
             </div>
           </li>
           <li>
             <span class="n">Fill what changes</span>
             <h3>Give the variables a value</h3>
             <p>Fill each variable, or let it fall back to the collection default, then the global one. Choose the target tool and the prompt is formatted for it. Text edits are kept in version history; the template itself stays as it is.</p>
-            <div class="crop crop-variables">
-              <img src="assets/shots/07_detail.jpg" width="460" height="1000" loading="lazy" alt="The same prompt's Variables list: subject, style and lighting, each with a field for its value, and the hint that empty ones fall back to collection and global defaults.">
+            <div class="crop">
+              <img src="assets/shots/v4-crop-variables.jpg" width="680" height="680" loading="lazy" alt="Prompt detail: the template “{{subject}}, {{style}}, {{lighting}} lighting, shot on 85mm lens, highly detailed, coherent composition” with Edit by hand and, where Apple Intelligence is available, Improve with AI — on-device; the hint that edits are saved to History as new versions; and the Variables list with {{subject}} set to “a lighthouse on a sea cliff at dusk”.">
             </div>
           </li>
           <li>
             <span class="n">Tap to insert</span>
             <h3>Tap a pad in the keyboard</h3>
-            <p>Switch to the PromptFox keyboard in a compatible app and tap a pad. The prompt's text is inserted into the current field with its variables filled. Hold a pad to peek at its name. There is an Undo button.</p>
-            <div class="crop crop-keyboard">
-              <img src="assets/shots/01_deck_in_chat.jpg" width="460" height="1000" loading="lazy" alt="The PromptFox keyboard: an Add button, the filter chips All, Text, Image and Code, a six-column grid of picture, code and text pads, and an Undo, Space and Return row.">
+            <p>Switch to the PromptFox keyboard in a compatible app and tap a pad. The prompt's text is inserted into the current field with the values you set in the app; a variable that still has no value stays as <code>{{…}}</code> for you to fill in, and a small <code>{}</code> tab marks those pads. Hold a pad to peek at its name. There is an Undo button.</p>
+            <div class="crop">
+              <img src="assets/shots/v4-crop-keyboard-everyday.jpg" width="680" height="680" loading="lazy" alt="The PromptFox keyboard with the Everyday deck and Pad glow on: an Add button and the deck chips Everyday and Studio above four rows of six pads — fox story pictures, a fox-eared microphone and a speech-bubble picture, neon glyph caps and label caps reading TL;DR, ELI5, SAY NO and POST, most with a small {} tab — then Undo, Space and Return keys.">
             </div>
           </li>
         </ol>
@@ -532,31 +577,39 @@ footer a:hover { color: var(--ink); }
         </div>
         <div class="frames">
           <article class="frame">
-            <img class="shot" src="assets/shots/02_deck_designer.jpg" width="460" height="1000" loading="lazy" alt="Prompt Deck Designer screen: a four-column grid of key faces — a picture, icon or text on each, one slot still empty — and the hint “Tap a key to design it — picture, icon or text.”">
+            <img class="shot" src="assets/shots/v4-deck-studio.jpg" width="460" height="1000" loading="lazy" alt="Deck tab with the Studio deck selected and Pad glow on: the deck chips Everyday and Studio and a + button above 24 neon caps in four rows of six, coloured from orange at the top left through pink and violet to blue and green at the bottom right, each with a line-drawn glyph; below, the prompt list — Image prompt builder, Explain a concept, Story starter and more — with a tick beside each prompt already on the deck.">
             <div>
-              <h3>Program the deck.</h3>
-              <p>Every key face is yours to design: your own picture, a neon cap in one of twelve colours with, optionally, one of 67 Holo Grid symbols, bundled cyberpunk or pixel key art, or a styled text label. Pressed pads light up; the idle deck in the designer can run a light show, and every effect follows Reduce Motion. The keyboard comes in three styles: Prompt Deck, text list, and list with pictures.</p>
+              <h3>Two ready decks. Add your own.</h3>
+              <p>A new library starts with two decks. Everyday mixes story pictures, cyberpunk key art, neon glyph caps and label caps; Studio is all neon glyph caps in a warm-to-cool sweep. On the Deck tab, switch decks with their chips, hold and drag a pad to move it, and tap + to add a deck for each kind of work — each holds up to 360 pads and gets its own chip on the keyboard. The keyboard comes in three styles: Prompt Deck, text list, and list with pictures.</p>
             </div>
           </article>
 
           <article class="frame flip">
-            <img class="shot" src="assets/shots/03_genai.jpg" width="460" height="1000" loading="lazy" alt="GenAI tab: a “Compose an image prompt” banner above prompt cards — “Image prompt builder” and “A lighthouse at dusk — Cinematic” tagged Midjourney, “System-prompt scaffold” and “Prompt improver” tagged Claude — each with a Use button.">
+            <img class="shot" src="assets/shots/v4-key-editor.jpg" width="460" height="875" loading="lazy" alt="Key editor for the Prompt improver pad: a large crimson neon cap with a glowing sparkle glyph; the Key face choices Neon, Picture, Symbol and Text with Neon selected; a Pad colour grid of twelve swatches and a Custom colour control; the Cap choices Plain, Glyph and Label with Glyph selected.">
+            <div>
+              <h3>Design every pad.</h3>
+              <p>Hold a pad on the Deck tab and let go to redesign it: a neon cap in one of twelve colours or your own, carrying one of 67 Holo Grid glyphs or a short label; bundled story, cyberpunk or pixel key art; your own picture; a symbol; or styled text. A pad you never designed shows its prompt’s picture, or a neon cap with a short title. Turn on Pad glow in Settings › Appearance and the pad under your thumb lights up on the keyboard, and an idle deck runs its own light show; both follow Reduce Motion.</p>
+            </div>
+          </article>
+
+          <article class="frame">
+            <img class="shot" src="assets/shots/v4-genai.jpg" width="460" height="1000" loading="lazy" alt="GenAI tab: a Compose an image prompt banner and an Add New button above picture cards — Image prompt builder and Cinematic still, both tagged Midjourney +1, each with a Use button; below them Slow push-in shot and Restyle a photo, cut off by the tab bar.">
             <div>
               <h3>The right format for each AI tool.</h3>
               <p>Each prompt knows its target: Midjourney <code>--ar</code> and <code>--no</code>, Stable Diffusion, video tools, or plain chat. The keyboard inserts it formatted for that tool.</p>
             </div>
           </article>
 
-          <article class="frame">
-            <img class="shot" src="assets/shots/06_collections.jpg" width="460" height="1000" loading="lazy" alt="Collections screen: picture tiles named Work, GenAI, DevOps, Social and Fun with prompt counts, and a New Collection tile.">
+          <article class="frame flip">
+            <img class="shot" src="assets/shots/v4-collections.jpg" width="460" height="1000" loading="lazy" alt="Collections screen: picture tiles for Work (Emails, meetings, docs — the day job; 9 prompts), GenAI (Prompt-craft for image &amp; LLM tools; 9 prompts), DevOps (Code review, incidents, shell; 8 prompts), Social (Posts, replies, announcements; 5 prompts) and Fun (Stories, games, curiosity; 5 prompts), and a New Collection tile.">
             <div>
               <h3>Local library. Your backup.</h3>
               <p>Prompts live in collections on your iPhone, and a collection carries its own variable defaults for the prompts in it. Export everything you wrote as one JSON file you own — prompts, versions, collections, variables, decks and settings. Attached pictures are not in that file.</p>
             </div>
           </article>
 
-          <article class="frame flip">
-            <img class="shot" src="assets/shots/04_composer_styles.jpg" width="460" height="1000" loading="lazy" alt="Composer “Style” step: illustrated tiles such as Photoreal, Cinematic, 3D render, Watercolor, Oil painting and Ink sketch, with Cinematic selected.">
+          <article class="frame">
+            <img class="shot" src="assets/shots/v4-composer.jpg" width="460" height="1000" loading="lazy" alt="Composer “Style” step: illustrated tiles such as Photoreal, Cinematic, 3D render, Watercolor, Oil painting and Ink sketch, with Cinematic selected.">
             <div>
               <h3>Build visual prompts, block by block.</h3>
               <p>The guided Composer walks through styles, settings, weather, lighting, materials and more — 148 built-in blocks, 124 of them illustrated; camera, mood and aspect use symbols. Add a subject and blocks of your own. The result is a complete, ordered prompt saved to your library. PromptFox does not generate images.</p>
@@ -603,7 +656,7 @@ footer a:hover { color: var(--ink); }
           </div>
           <div>
             <dt>Three keyboard styles</dt>
-            <dd>Prompt Deck with icon keys (hold a key to peek at its name), a text list, or a list with pictures. There is an Undo button.</dd>
+            <dd>Prompt Deck — pads with pictures, glyphs or short labels and a chip for each deck (hold a pad to peek at its name) — a text list, or a list with pictures. In a new library, the keyboard starts in the Prompt Deck style. There is an Undo button.</dd>
           </div>
           <div>
             <dt>One JSON file you own</dt>
@@ -622,6 +675,25 @@ footer a:hover { color: var(--ink); }
     </div>
   </section>
 
+  <!-- 6. ILLUSTRATION — brand art after all product proof; not a numbered section.
+       Byte-identical C2PA files, cropped by CSS only: no source row below 570 (wave) or 560 (fox) is ever shown. -->
+  <div class="sec wrap art-end">
+    <div class="sec-grid">
+      <figure class="art">
+        <div class="art-frame art-wave">
+          <img src="assets/art/word-slots-wave.png" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" alt="Illustration: glowing blank word blocks and dashed empty slots flow in a curve that ends in two fox-ear points.">
+        </div>
+        <figcaption><span class="kind">Illustration</span> The words that stay, and open slots for what changes. AI-generated with ChatGPT (OpenAI); not a picture of the app.</figcaption>
+      </figure>
+      <figure class="art">
+        <div class="art-frame art-fox">
+          <img src="assets/art/hero-signal-deck.png" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" alt="Illustration: a red fox in a dark hooded jacket at night, its face lit warmly from below, with glass walls and city lights behind it.">
+        </div>
+        <figcaption><span class="kind">Illustration</span> AI-generated brand art made with ChatGPT (OpenAI); not a picture of the app. PromptFox is a keyboard app for iPhone, and it does not create images.</figcaption>
+      </figure>
+    </div>
+  </div>
+
 </main>
 
 <footer>
@@ -633,6 +705,7 @@ footer a:hover { color: var(--ink); }
         <li><a href="support.html#impressum" lang="de">Impressum</a></li>
       </ul>
     </nav>
+    <p class="credits">Pictures marked “Illustration” are AI-generated with ChatGPT (OpenAI). They are brand art, not views of the product; their files are published unchanged and keep the Content Credentials OpenAI embedded. The framed screens are captures from the PromptFox app, resized and cropped; the Prompt Deck at the top of the page is redrawn in HTML and CSS from the app’s ready-made Everyday deck and its pad art.</p>
     <p class="credits">Deck glyphs build on <a href="https://lucide.dev">Lucide</a> icons (ISC) and Feather (MIT) · <a href="THIRD_PARTY_NOTICES.txt">licence notices</a></p>
     <p class="credits">Third-party product names are trademarks of their owners; PromptFox is not affiliated with them.</p>
     <p>PromptFox · made in Austria</p>
