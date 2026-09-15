@@ -5,9 +5,11 @@ Static HTML, no build step, hosted on GitHub Pages.
 
 | Page | Purpose |
 |---|---|
-| `index.html` | Landing page (currently a minimal placeholder — the marketing page goes here) |
-| `support.html` | **App Store Support URL** — support address, FAQ, § 5 ECG Impressum |
-| `privacy.html` | **App Store Privacy Policy URL** — "Data Not Collected", keyboard privacy rules, German summary |
+| `index.html` | Landing page (live since 2026-09-14) |
+| `support.html` | **App Store Support URL** — support address, FAQ, § 5 ECG Impressum (`#impressum`) |
+| `privacy.html` | **App Store Privacy Policy URL** — "Data Not Collected", keyboard privacy rules, full German statement |
+| `THIRD_PARTY_NOTICES.txt` | Lucide (ISC) and Feather (MIT) licence texts for the deck glyphs |
+| `robots.txt`, `sitemap.xml`, `404.html` | Crawl hints and the not-found page |
 
 ## Addresses
 
