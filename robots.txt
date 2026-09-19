@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://promptfox.psystream.net/sitemap.xml
+Sitemap: https://promptwhisker.com/sitemap.xml
