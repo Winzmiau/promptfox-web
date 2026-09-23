@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://promptwhisker.com/sitemap.xml
+Sitemap: https://promptlux.app/sitemap.xml

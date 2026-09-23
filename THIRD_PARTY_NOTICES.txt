@@ -7,7 +7,7 @@
 - License: ISC
 - Base glyphs used: House, Rocket, Compass, Orbit, RadioTower, CircleDot, Pause, Mic, MicOff, Camera, PanelsTopLeft, MessageCircle, BellRing, Music2, Volume2, Volume1, ScanLine, Sparkle, FolderOpen, Settings, Lightbulb, Hourglass, MoonStar, Undo2, CircleCheckBig, Save, Copy, ClipboardPaste, CalendarDays, Inbox, Presentation, SquareTerminal, Code2, Database, CloudSync, Network, ShieldCheck, CloudUpload, GitPullRequestArrow, Hammer, Container, ScrollText, History, Play, Square, SkipBack, SkipForward, Repeat2, SlidersHorizontal, Sparkles, Shuffle, ImagePlus, WandSparkles, ListCollapse, Bot, StickyNote, QrCode, Calculator, HousePlug, Search, Zap, PenLine, Reply, Forward, Send, Paperclip
 
-The Lucide paths are used as semantic bases and composited with original PromptFox fox-ear, tail, glass, grid, glow, and edge treatments. I67 is a custom vector numeral monogram and does not use a Lucide glyph.
+The Lucide paths are used as semantic bases and composited with original PromptLux fox-ear, tail, glass, grid, glow, and edge treatments. I67 is a custom vector numeral monogram and does not use a Lucide glyph.
 
 ### License text
 
