@@ -14,7 +14,7 @@ Static HTML, no build step, hosted on GitHub Pages.
 ## Addresses
 
 - Canonical: `https://promptlux.app/` (since 2026-09-21; HTTPS enforced by GitHub Pages, Let's Encrypt certificate renewed by GitHub)
-- History: `https://promptwhisker.com/` (2026-09-19 → 09-21) and `https://promptfox.psystream.net/` (2026-09-14 → 09-19) — both kept as 301 redirects to the canonical address; `https://winzmiau.github.io/promptfox-web/` likewise
+- History: `https://promptwhisker.com/` (2026-09-19 → 09-21), `https://promptfox.psystream.net/` (2026-09-14 → 09-19) and `https://winzmiau.github.io/promptfox-web/` — all retired, **no redirects** (decision 2026-10-18: promptlux.app is the only address; the old domains may be reused for other purposes). Old links simply stop working
 
 Support mail: `promptfox@psystream.net` (iCloud+ custom domain; DNS on Cloudflare).
 
@@ -27,7 +27,7 @@ The three page names (`index`, `support`, `privacy`) never change once submitted
 
 1. Cloudflare → promptlux.app → DNS → Records, proxy **off** (grey cloud): **A** `@` → 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 and **AAAA** `@` → 2606:50c0:8000::153, 2606:50c0:8001::153, 2606:50c0:8002::153, 2606:50c0:8003::153 (apex domain — GitHub Pages needs A/AAAA, not a CNAME). Optional `www` CNAME → `winzmiau.github.io`.
 2. Push this repo with `CNAME` = `promptlux.app`; GitHub → Settings → Pages shows the custom domain; tick **Enforce HTTPS** once the certificate is issued (minutes to an hour). `.app` is HSTS-preloaded, so the site only works over HTTPS — expected.
-3. The `CNAME` file must stay. On the old zones (promptwhisker.com/.app, psystream.net) add a 301 redirect rule to `https://promptlux.app/$1`.
+3. The `CNAME` file must stay. No redirect rules on the old zones — the old addresses are retired, not forwarded.
 
 ## Rules
 
