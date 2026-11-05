@@ -35,3 +35,7 @@ The three page names (`index`, `support`, `privacy`) never change once submitted
 - Every statement about the app must be true of the shipped build. Source of truth: the app repo's
   `RELEASE_CHECKLIST.md` and `APP_STORE.md`.
 - Keep the three page names stable; App Store Connect points at them.
+
+## Video loops (added 2026-11-05)
+
+`assets/video/` holds two short muted loops with poster frames: `demo-keyboard-loop.mp4` (an AI-generated animation of a prompt tapped on a stylised PromptLux keyboard, inserted into a chat app, the picture bursting out — not a recording of the app) and `fox-dj-loop.mp4` (the fox at the deck, brand animation). Both are our own generated content, captioned as animations on the page, tap to play, no autoplay, no scripts.

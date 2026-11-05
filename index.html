@@ -69,11 +69,11 @@
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PromptLux</title>
-<meta name="description" content="A private, reusable AI prompt keyboard for iPhone: save a prompt once, fill the variables, format it for the right tool, insert it in compatible apps.">
+<title>PromptLux: AI Prompt Keyboard</title>
+<meta name="description" content="AI prompt keyboard for iPhone: save a prompt once, fill in the variables with a tap and insert it in compatible apps. Build image prompts block by block.">
 <meta name="color-scheme" content="dark">
-<meta property="og:title" content="PromptLux">
-<meta property="og:description" content="A visual prompt keyboard for iPhone. Save a prompt once, fill the changing parts, format it for the right tool, and insert it in compatible apps.">
+<meta property="og:title" content="PromptLux: AI Prompt Keyboard">
+<meta property="og:description" content="AI prompt keyboard for iPhone. Save a prompt once, fill in the variables with a tap and insert it in compatible apps. Build image prompts block by block.">
 <meta property="og:image" content="https://promptlux.app/assets/promptfox-og-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -285,6 +285,8 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
   }
 }
 
+.art-frame.art-video { border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--indigo); }
+.art-frame.art-video video { display: block; width: 100%; height: auto; }
 .deck-figure figcaption { color: var(--ink-2); font-size: 0.9rem; margin-top: var(--s-3); text-align: center; text-wrap: balance; }
 
 /* ---------- numbered sections ---------- */
@@ -537,21 +539,21 @@ footer a:hover { color: var(--ink); }
       <div>
         <div class="prose">
           <p class="eyebrow">Privacy</p>
-          <h2 id="trust-h">Nothing phones home.</h2>
-          <p class="lead">Four plain facts about what PromptLux does with your prompts. It keeps them on your iPhone.</p>
+          <h2 id="trust-h">Private by design.</h2>
+          <p class="lead">Four plain facts about what PromptLux does with your prompts.</p>
         </div>
         <dl class="facts">
           <div>
-            <dt>No network code.</dt>
-            <dd>No server, no account, no analytics, no third-party SDKs. Our App Store privacy answer: “Data Not Collected”.</dd>
-          </div>
-          <div>
-            <dt>Browse and insert without Full Access.</dt>
+            <dt>The keyboard works without Full Access.</dt>
             <dd>Reading your prompts and inserting them from the keyboard needs no Full Access.</dd>
           </div>
           <div>
-            <dt>Add means the text you selected. Only that.</dt>
-            <dd>Full Access only enables the keyboard’s Add button, which hands the text you selected to the app — never surrounding text, never keystrokes.</dd>
+            <dt>Full Access only to add prompts from other apps.</dt>
+            <dd>It enables exactly one thing: the keyboard’s Add button, which hands the text you selected to the app — never surrounding text, never keystrokes.</dd>
+          </div>
+          <div>
+            <dt>No network code.</dt>
+            <dd>No server, no account, no analytics. Our App Store privacy answer: “Data Not Collected”.</dd>
           </div>
           <div>
             <dt>Works where custom keyboards are allowed.</dt>
@@ -635,7 +637,7 @@ footer a:hover { color: var(--ink); }
         </div>
         <dl class="craft">
           <div>
-            <dt>Full version history</dt>
+            <dt>Built-in version history</dt>
             <dd>Every change to a prompt’s text is kept as a version. Open any earlier version, copy it, or make it a template of its own.</dd>
           </div>
           <div>
@@ -674,6 +676,28 @@ footer a:hover { color: var(--ink); }
       </div>
     </div>
   </section>
+
+  <!-- 5b. IN MOTION — two short loops, not numbered; tap to play (no scripts on this site, so no autoplay). -->
+  <div class="sec wrap motion">
+    <div class="sec-grid">
+      <figure class="art">
+        <div class="art-frame art-video">
+          <video controls muted loop playsinline preload="none" poster="assets/video/demo-keyboard-poster.jpg" width="1200" height="800" aria-label="Animation: a prompt is tapped on the PromptLux keyboard inside a chat app, inserted, and the generated picture bursts out of the phone.">
+            <source src="assets/video/demo-keyboard-loop.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption><span class="kind">Animation</span> Tap a pad, the prompt is inserted, the picture arrives. AI-generated animation with a stylised keyboard; not a recording of the app — the real screens are above.</figcaption>
+      </figure>
+      <figure class="art">
+        <div class="art-frame art-video">
+          <video controls muted loop playsinline preload="none" poster="assets/video/fox-dj-poster.jpg" width="1280" height="549" aria-label="Animation: the fox at a glowing pad controller on a rooftop at night, prompt pads swirling out of the deck.">
+            <source src="assets/video/fox-dj-loop.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption><span class="kind">Animation</span> The fox at the deck. AI-generated brand animation; not a picture of the app.</figcaption>
+      </figure>
+    </div>
+  </div>
 
   <!-- 6. ILLUSTRATION — brand art after all product proof; not a numbered section.
        Byte-identical C2PA files, cropped by CSS only: no source row below 570 (wave) or 560 (fox) is ever shown. -->
