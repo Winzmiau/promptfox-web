@@ -39,3 +39,10 @@ The three page names (`index`, `support`, `privacy`) never change once submitted
 ## Video loops (added 2026-11-05)
 
 `assets/video/` holds two short muted loops with poster frames: `demo-keyboard-loop.mp4` (an AI-generated animation of a prompt tapped on a stylised PromptLux keyboard, inserted into a chat app, the picture bursting out — not a recording of the app) and `fox-dj-loop.mp4` (the fox at the deck, brand animation). Both are our own generated content, captioned as animations on the page, tap to play, no autoplay, no scripts.
+
+## Version 1.2 (prepared 2026-11-16)
+
+- `index.html` and `support.html` describe version 1.2: text decks, the Short Messages deck, Draft Message, the Reply key, and the free download with PromptLux Pro. They go live when 1.2 is on sale.
+- The framed screens are captures of the 1.2 build (`assets/shots/v5-*.jpg`), cropped and resized only. `v4-genai.jpg` is still the 1.1 capture. The older `v4-*.jpg` files the page no longer uses stay in the repository.
+- **Event ribbon:** the block between `EVENT RIBBON START` and `EVENT RIBBON END` in `index.html` announces the in-app event "Respond First" (16 to 22 November 2026). Delete that block after 22 November.
+- Apple's names keep their own capitals: the class `asis` stops a line set in capitals from turning "iPhone" into capitals.

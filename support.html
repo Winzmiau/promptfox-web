@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" sizes="256x256" href="assets/icon-256.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icon-180.png">
 <title>PromptLux — Support</title>
-<meta name="description" content="Support for PromptLux, the visual prompt keyboard for iPhone: contact, frequently asked questions and Impressum.">
+<meta name="description" content="Support for PromptLux, the visual prompt keyboard for iPhone: contact, frequently asked questions, the Reply key, PromptLux Pro and Impressum.">
 <link rel="canonical" href="https://promptlux.app/support.html">
 <meta property="og:title" content="PromptLux — Support">
 <meta property="og:description" content="Contact, frequently asked questions and Impressum for PromptLux for iPhone.">
@@ -29,7 +29,7 @@
   .card { background: var(--card); border-radius: 14px; padding: 22px 24px; margin: 14px 0;
           box-shadow: 0 1px 4px rgba(0,0,0,.06); }
   a { color: var(--teal); }
-  ul { padding-left: 20px; }
+  ul, ol { padding-left: 20px; }
   li { margin: 6px 0; }
   .de { border-left: 3px solid var(--accent); padding-left: 14px; margin-top: 10px;
         color: var(--dim); font-size: 15px; }
@@ -57,9 +57,11 @@
   <h2>Frequently asked</h2>
   <div class="card">
     <ul>
-      <li><strong>Where is my data?</strong> On your iPhone (and in your own device or
-          iCloud backups, like any app’s data). PromptLux has no server, no account, and
-          makes no network connections. See the
+      <li><strong>Where is my data?</strong> Your data stays on your iPhone. The only copies elsewhere
+          are your own device or iCloud backups, like any app’s data, and files you export
+          yourself. PromptLux has no server and no account, and the app has no network code
+          of its own. From version 1.2 the app itself contacts one outside service only:
+          the App Store, for purchases. See the
           <a href="privacy.html">privacy policy</a>.</li>
       <li><strong>How do I enable the PromptLux keyboard?</strong> Settings ›
           General › Keyboard › Keyboards › Add New Keyboard › PromptLux. Then hold the
@@ -67,22 +69,119 @@
       <li><strong>Deck or list?</strong> In PromptLux, Settings › PromptLux keyboard ›
           Keyboard style switches between the Prompt Deck (pads), a text list, and a list
           with pictures; a new library starts on the Prompt Deck. On the keyboard’s Deck, the
-          chips next to Add switch between your decks; tap a pad to insert its prompt, hold it
-          to see its name.</li>
-      <li><strong>Why does the keyboard offer “Allow Full Access”?</strong> Reading your
-          prompts never needs it. It is only required if you want the keyboard’s
-          “Add” button to hand selected text back to the app. Even with Full Access on,
-          PromptLux does not transmit your prompts — the app has no network code at all.</li>
+          chips next to Add switch between your decks; tap a pad to insert its prompt or
+          text, hold it to see its name. From version 1.2 a deck holds either prompts or
+          texts: prompt decks have a teal chip, text decks a blue one. A new library starts
+          with three decks: Everyday, Studio and Short Messages. To reorder, rename or take
+          a deck off the bar, use Manage decks on the Deck tab or in Settings.</li>
+      <li><strong>How do I make a pad of my own text?</strong> In the app, tap the pencil
+          key on the Deck tab. Draft Message opens: write your text (up to 300 characters),
+          choose its category, collection and deck, pick a face for the pad and tap Save.
+          The page stays open for the next text. On the keyboard, tap a free pad: type your
+          text or tap Use selection, pick an icon and tap Save. Saving a pad from the
+          keyboard needs Full Access. A pad inserts its text; you press send.</li>
+      <li><strong>Why does the keyboard offer “Allow Full Access”?</strong> Full Access
+          is optional. Without it the keyboard shows your decks, inserts pads, fills
+          variables and drafts a reply to text you select. In version 1.2 it is used for
+          three more things, each only when you tap: Add (saves text you selected to your
+          library), Save in the keyboard’s fill panel (keeps a pad you wrote on the
+          keyboard), and Paste in the Reply key’s panel (takes a message or screenshot you
+          copied). Reading the chat with the Action Button may need it as well. With Full
+          Access on or off, PromptLux does not transmit your prompts or messages: the
+          keyboard has no network code at all, and the app none of its own. You can switch
+          Full Access off at any time in Settings › General › Keyboard › Keyboards ›
+          PromptLux.</li>
+      <li><strong>Which languages does PromptLux speak?</strong> The app, its ready-made
+          prompts and its ready texts are in English. The Reply key drafts for English
+          and German messages and answers in the language of the message. For a message in
+          another language it says so and inserts nothing.</li>
       <li><strong>How do I back up my vault?</strong> Settings › Backup &amp; Transfer ›
           Prepare export, then share the single PromptLux-Export.json file — you own it. It
-          holds your prompts and their versions, collections, variables, decks and settings.
-          Pictures you attached (prompt previews, Deck-key images, collection backgrounds)
-          stay on the device and are not part of the file. Bring it onto any device running
-          PromptLux with Import from JSON.</li>
+          holds your prompts and texts, their versions, collections, variables, decks and
+          settings. Pictures you attached (prompt previews, pad pictures, collection
+          backgrounds) stay on the device and are not part of the file. Bring it onto any
+          device running PromptLux with Import from JSON.</li>
       <li><strong>Prompt Doctor and the other intelligence features are missing.</strong>
           They run on Apple Intelligence (iOS 26 on eligible devices) and appear only on
           devices and iOS versions that provide it. Settings › Intelligence shows what this
-          device supports. The library, packs, Composer and keyboard do not depend on it.</li>
+          device supports. The Reply key and Reword need it as well. The library, packs,
+          Composer and the keyboard’s pads do not depend on it.</li>
+    </ul>
+  </div>
+
+  <h2 id="reply-key">The Reply key (from version 1.2)</h2>
+  <div class="card">
+    <ul>
+      <li><strong>How does the Reply key work?</strong> Tap the Reply key on the
+          PromptLux keyboard, between Space and Return, and hand it one message: tap Paste
+          for a message or a screenshot of the chat that you copied (Paste shows only with
+          Full Access on), select the message in the text field and tap Use selection, or
+          press and hold the Action Button (see below). The answers fit the message: a Yes,
+          a No and Later for a yes-or-no question or a request; one reply for news, thanks
+          or a greeting; only Later when just you know the answer. Pick Friendly,
+          Professional, Warm or Direct, short or longer. A tap on a draft inserts it into
+          your text field. Read it; you press send. Reword, in the same panel, rewords text
+          of your own that you selected.</li>
+      <li><strong>Why does the Reply key not draft?</strong> Drafting needs an iPhone with
+          Apple Intelligence switched on; without it the panel says why, and the pads work
+          as before. It drafts for English and German messages only. For a message it
+          recognizes as sexual, abusive, threatening or about self-harm it drafts nothing
+          and says: “I can’t help with this message. This one needs your own words. Nothing
+          was inserted.”</li>
+      <li><strong>What happens to the message I hand over?</strong> The message and the
+          drafts stay on your iPhone: a screenshot is read with Apple’s text recognition, and
+          Apple Intelligence drafts the answers. The app sends them to nobody. PromptLux holds them in memory only: until a draft goes into your text
+          field, you close the panel or the keyboard leaves the screen, and at most five
+          minutes. The message is not added to your library. See the
+          <a href="privacy.html">privacy policy</a>.</li>
+      <li><strong>How do I set up reading the chat with the Action Button?</strong> On an
+          iPhone with an Action Button, open PromptLux › Settings › Reply key and switch on
+          “Read the chat with the Action Button”. Then set it up once:
+          <ol>
+            <li>Tap “Add the shortcut” and choose Shortcuts. There, tap “Add Shortcut”.</li>
+            <li>Open Settings › Action Button on your iPhone, swipe to “Shortcut” and choose
+                “PromptLux Read Chat”.</li>
+          </ol>
+          Then, in a chat: tap the Reply key on the PromptLux keyboard, and press and hold
+          the Action Button. The Shortcuts app takes a picture of the screen and hands it to
+          PromptLux, which reads the messages on your iPhone and drafts an answer to the
+          newest message of the other person, with the earlier ones as background. Your
+          iPhone may ask your permission to hand the picture over; the screen flashes each
+          time a picture is taken. If no Reply panel is waiting, nothing is read. PromptLux reads the picture
+          in memory; it does not add the picture or the chat to your library. Reading the
+          chat may need Full Access. Settings › Reply key shows these steps with the names
+          your iPhone uses, and you can switch reading off there at any time.</li>
+    </ul>
+  </div>
+
+  <h2 id="pro">Free and PromptLux Pro (from version 1.2)</h2>
+  <div class="card">
+    <ul>
+      <li><strong>What is free, and what does PromptLux Pro open?</strong> PromptLux is free
+          to download. The free version holds the first prompt deck with its first 12 pads,
+          the first text deck with its first 6 pads, 20 of the 36 ready-made prompts, 6 of
+          the 12 ready texts, room for 10 prompts and 6 texts of your own, and 4 of the 9
+          looks. Pads beyond that stay on your decks, grayed out; nothing is removed.
+          PromptLux Pro opens every deck and every pad, all ready-made prompts and texts,
+          every pack, no limit for your own prompts and texts, and all nine looks. Take it
+          as a monthly plan (new subscribers get the first week free) or as a one-time
+          purchase. The App Store shows the price for your country. To see the offer, tap
+          Settings › See PromptLux Pro, or tap a grayed-out pad in the app. If a plan ends,
+          the free version applies again; what you made stays yours and still opens,
+          copies, exports and deletes in the library.</li>
+      <li><strong>I bought PromptLux before version 1.2. Do I have to pay again?</strong>
+          No. If you bought PromptLux when it was a paid app, you keep everything and need
+          to do nothing. The app recognizes it on its own: from a library that was already on your
+          iPhone before version 1.2, or from the App Store record that shows your first download was a paid
+          version. The Pro page then says “You bought PromptLux — everything is included,
+          for good.” After a reinstall or on another iPhone, if the app shows the free
+          version, tap Restore purchases (see below) with the Apple Account you bought
+          PromptLux with.</li>
+      <li><strong>How do I restore a purchase or manage my monthly plan?</strong> Restore:
+          in PromptLux, Settings › PromptLux Pro › Restore purchases; the Pro page has the
+          same button. Monthly plan: while it runs, Settings › Your PromptLux Pro opens the
+          Pro page with Manage subscription. You can also manage or cancel it in your App
+          Store account settings. The plan renews automatically until you cancel it.</li>
     </ul>
   </div>
 

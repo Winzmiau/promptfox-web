@@ -3,10 +3,15 @@
 <head>
 <!--
   PromptLux landing — v4 pictures (2026-09-15). The 2026-09-14 final, updated to the store-polish app.
+  Version 1.2 round (2026-11-16): store link in the hero, the event ribbon (one marked block, below the hero), the
+  section "New in version 1.2" with three v5 captures, the free / Pro box, and every 1.1 statement
+  that 1.2 makes untrue corrected. The new section is 02, so the sections now run 01 -> 05; the deck
+  marker walks 01 -> 04 and starts its next lap at 05 (pad 1 lit again). v5 pictures:
+  tools/make_v5_shots.py in the work folder (crop and resize only).
 
   SIGNATURE ELEMENT
   A CSS-built Prompt Deck, full width of the hero, directly under the promise: the keyboard's chip
-  row (Add | Everyday · Studio) above a 6-column grid modelled pad for pad on the starter Everyday
+  row (Add | Everyday · Studio · Short Messages) above a 6-column grid modelled pad for pad on the starter Everyday
   deck (Seed.swift): six story pictures, two cyberpunk key-art pads, twelve Holo Grid 67 glyphs on
   neon caps, four label caps (TL;DR, ELI5, SAY NO, POST). 24 pads, no blanks.
   Exactly ONE pad is lit with the four-pass glow recipe; label caps are never lit, and the send and
@@ -18,7 +23,7 @@
   walking 01 -> 04 down the page. Everything else is ink on Night with one hairline per section.
 
   IMAGE LAW
-  Captures (assets/shots/v4-*) are app screenshots, resized and cropped, never retouched; always
+  Captures (assets/shots/v4-*, and v5-* from the 1.2 build) are app screenshots, resized and cropped, never retouched; always
   framed (1px line border, 8px radius). Illustrations (assets/art/) are AI-generated brand art
   (ChatGPT / OpenAI): never in the hero, never beside the CSS deck, never behind a capture;
   borderless, faded into Night, always with a visible "Illustration" caption. They ship
@@ -61,7 +66,7 @@
     and the deck plate. No drop shadows except the glow recipe. No inline style attributes.
 
   ACCESSORY REMOVED BEFORE FINISHING
-  The two short ember hairlines that flanked "Coming soon to the App Store". The brief asks
+  The two short ember hairlines that flanked the hero's store line (then a pre-launch note). The brief asks
   for plain text; the flourishes made it read like a badge. Review round: also the hero's
   requirements line ("Requires iOS 17 …"), which duplicated Craft → Requirements and the footer
   and pushed the deck below the fold at 375 x 812. v4 pictures round: the holographic stage plate
@@ -70,10 +75,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PromptLux: AI Prompt Keyboard</title>
-<meta name="description" content="AI prompt keyboard for iPhone: save a prompt once, fill in the variables with a tap and insert it in compatible apps. Build image prompts block by block.">
+<meta name="description" content="AI prompt keyboard for iPhone: insert saved prompts and ready texts with a tap, and let the Reply key draft answers on your iPhone. Free to download.">
 <meta name="color-scheme" content="dark">
 <meta property="og:title" content="PromptLux: AI Prompt Keyboard">
-<meta property="og:description" content="AI prompt keyboard for iPhone. Save a prompt once, fill in the variables with a tap and insert it in compatible apps. Build image prompts block by block.">
+<meta property="og:description" content="AI prompt keyboard for iPhone: insert saved prompts and ready texts with a tap, and let the Reply key draft answers on your iPhone. Free to download.">
 <meta property="og:image" content="https://promptlux.app/assets/promptfox-og-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -159,6 +164,8 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
   color: var(--amber);
   margin-bottom: var(--s-3);
 }
+/* Apple's names keep their own capitals inside a line that is set in capitals ("iPhone", never "IPHONE") */
+.asis { text-transform: none; }
 .lead { color: var(--ink-2); margin-top: var(--s-4); }
 .muted { color: var(--ink-2); }
 .skip {
@@ -183,7 +190,15 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
 .hero-words h1 { max-width: 20ch; margin-inline: auto; }
 .hero-words .lede { color: var(--ink-2); font-size: var(--t-0); line-height: 1.45; max-width: 44ch; margin: var(--s-6) auto 0; letter-spacing: -0.005em; }
 .cta { margin-top: var(--s-8); display: flex; flex-direction: column; align-items: center; gap: var(--s-3); }
-.soon { color: var(--ember); font-weight: 600; letter-spacing: 0.01em; }
+.store { margin: 0; }
+.store a { color: var(--ember); font-weight: 600; letter-spacing: 0.01em; display: inline-flex; align-items: center; min-height: 44px; }
+.store a:hover { color: var(--ink); }
+
+/* ---------- event ribbon: one slim line; its HTML is one marked block, remove after 22 November 2026 ---------- */
+.ribbon { border-top: 1px solid var(--line); }   /* below the hero; the next section brings its own top hairline */
+.ribbon p { margin: 0; padding-block: var(--s-3); text-align: center; color: var(--ink-2); font-size: 0.875rem; line-height: 1.45; text-wrap: balance; }
+.ribbon strong { color: var(--amber); font-weight: 600; }
+.ribbon a { display: inline-block; padding: 12px 3px; margin: -12px -3px; }   /* 44 px tap target, no extra line height */
 .cta .links { display: flex; gap: var(--s-6); font-size: 0.95rem; margin: 0; }
 .cta .links a { display: inline-flex; align-items: center; min-height: 44px; }
 
@@ -194,7 +209,12 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
   border-radius: var(--radius-pad);
   padding: var(--s-3);
 }
-.chips { list-style: none; margin: 0 0 var(--s-3); display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center; }
+/* one row, like the keyboard's deck bar (which scrolls sideways): on a narrow screen the last chip is cut at the edge */
+.chips { list-style: none; margin: 0 0 var(--s-3); display: flex; gap: var(--s-2); flex-wrap: nowrap; overflow: hidden; align-items: center; }
+.chips li { flex: none; white-space: nowrap; }
+@media (max-width: 639px) {   /* the cut chip fades out instead of ending on a hard edge */
+  .chips { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+}
 .chips li {
   font-size: 0.8rem; line-height: 1;
   padding: 7px 10px; border-radius: var(--radius-ui);
@@ -299,7 +319,7 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
 .marker { display: grid; grid-template-columns: repeat(2, 24px); gap: 4px; padding: 5px; width: max-content;
   background: var(--plate); border: 1px solid var(--plate-line); border-radius: 8px; }
 .marker i { display: block; width: 24px; height: 24px; border-radius: 6px; background: #141020; border: 1px solid #1E1730; }
-.m1 i:nth-child(1), .m2 i:nth-child(2), .m3 i:nth-child(3), .m4 i:nth-child(4) {
+.m1 i:nth-child(1), .m2 i:nth-child(2), .m3 i:nth-child(3), .m4 i:nth-child(4), .m5 i:nth-child(1) {
   background: radial-gradient(70% 70% at 50% 42%, var(--lit-core) 0%, var(--lit-body) 48%, var(--lit-rim) 100%);
   border-color: var(--lit-rim);
   box-shadow: 0 0 6px 1px rgba(244, 99, 0, 0.30), 0 0 4px 0 rgba(252, 210, 110, 0.45), inset 0 0 3px rgba(252, 210, 110, 0.55);
@@ -318,6 +338,8 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
 .novice { margin-top: var(--s-12); padding: var(--s-6); border: 1px solid var(--line); border-radius: 8px; background: var(--indigo); max-width: 720px; }
 .novice h3 { font-size: var(--t-0); }
 .novice p { margin-top: var(--s-2); color: var(--ink-2); }
+.novice p + p { margin-top: var(--s-3); }
+.frame p + p { margin-top: var(--s-3); }
 
 /* ---------- proof frames ---------- */
 .frames { display: grid; gap: var(--s-16); margin-top: var(--s-8); }
@@ -340,6 +362,7 @@ code { font-family: var(--mono); font-size: 0.92em; color: var(--amber); }
 .packs { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); color: var(--ink); margin-top: var(--s-2); }
 .packs li::after { content: "·"; color: var(--cyan); margin-left: var(--s-3); }
 .packs li:last-child::after { content: none; }
+.craft dd p { margin-top: var(--s-2); }
 /* ---------- illustrations: AI art, byte-identical files, cropped by CSS only ---------- */
 /* crop law — wave shows source rows 0-570 at every width (pad grid starts ~590);
    fox shows rows 0-560 below 640px and 0-556 above (paws and controller start ~600) */
@@ -420,6 +443,7 @@ footer a:hover { color: var(--ink); }
   <nav aria-label="Page">
     <ul role="list">
       <li><a href="#how">How it works</a></li>
+      <li><a href="#new">New in 1.2</a></li>
       <li><a href="#trust">Privacy</a></li>
       <li><a href="support.html">Support</a></li>
     </ul>
@@ -431,21 +455,22 @@ footer a:hover { color: var(--ink); }
   <!-- 1. HERO — the words, then the deck -->
   <section class="hero wrap" aria-labelledby="h1">
     <div class="hero-words">
-      <p class="eyebrow">A visual prompt keyboard for iPhone.</p>
+      <p class="eyebrow">A visual prompt keyboard for <span class="asis">iPhone</span>.</p>
       <h1 id="h1">Your reusable prompts, ready in the apps where you work.</h1>
       <p class="lede">PromptLux is a private, reusable AI prompt keyboard for iPhone: save a prompt once, fill the changing parts, format it for the right tool, and insert it in compatible apps.</p>
       <div class="cta">
-        <p class="soon">Coming soon to the App Store</p>
+        <p class="store"><a href="https://apps.apple.com/app/id6804645659">Get PromptLux on the App Store</a></p>
         <p class="links"><a href="#how">How it works</a> <a href="support.html">Support</a></p>
       </div>
     </div>
 
     <figure class="deck-figure">
-      <div class="deck" role="img" aria-label="The Prompt Deck keyboard with the Everyday deck: an Add button and the deck chips Everyday and Studio above 24 pads in four rows of six — six fox story pictures, two cyberpunk fox key-art pads, twelve luminous glyphs on neon caps, and four label caps reading TL;DR, ELI5, SAY NO and POST. One pad is lit.">
+      <div class="deck" role="img" aria-label="The Prompt Deck keyboard with the Everyday deck: an Add button and the deck chips Everyday, Studio and Short Messages above 24 pads in four rows of six — six fox story pictures, two cyberpunk fox key-art pads, twelve luminous glyphs on neon caps, and four label caps reading TL;DR, ELI5, SAY NO and POST. One pad is lit.">
         <ul class="chips">
           <li class="add">Add</li>
           <li class="sel">Everyday</li>
           <li>Studio</li>
+          <li>Short Messages</li>
         </ul>
         <ul class="pads">
           <li><div class="pad"><img src="assets/deck/vulpes_through_the_ember_gate.jpg" width="288" height="288" alt=""></div></li>
@@ -481,6 +506,14 @@ footer a:hover { color: var(--ink); }
     </figure>
   </section>
 
+  <!-- EVENT RIBBON START (remove after 22 November 2026) — placed below the hero so the deck stays above the fold at 375 x 812 -->
+  <aside class="ribbon" aria-label="In-app event">
+    <div class="wrap">
+      <p><strong>Respond First</strong> · 16 to 22 November · The Short Messages deck: one tap on a pad inserts a ready text to send. <a href="https://apps.apple.com/app/id6804645659?eventid=6835209602">See the event on the App Store</a></p>
+    </div>
+  </aside>
+  <!-- EVENT RIBBON END -->
+
   <!-- 2. HOW IT WORKS -->
   <section id="how" class="sec wrap" aria-labelledby="how-h">
     <div class="sec-grid">
@@ -498,9 +531,9 @@ footer a:hover { color: var(--ink); }
           <li>
             <span class="n">Save once</span>
             <h3>Write it in the library</h3>
-            <p>Write a prompt in the PromptLux app, or start from the 36 ready prompts a new library comes with, or from one of seven offline packs. Mark the parts that change as <code>{{variables}}</code> and give them defaults. Keep it in a collection.</p>
+            <p>Write a prompt in the PromptLux app, or start from a ready prompt: a new library comes with 36 (20 of them in the free version), and PromptLux Pro adds seven offline prompt packs. Mark the parts that change as <code>{{variables}}</code> and give them defaults. Keep it in a collection.</p>
             <div class="crop">
-              <img src="assets/shots/v4-crop-library.jpg" width="680" height="680" loading="lazy" alt="Prompts tab: an Add New button and the filters All, Text, Image and more above picture cards — Image prompt builder, tagged Midjourney +1, and Explain a concept, tagged ChatGPT +1, both starred, each showing its template with {{variables}} and a Use button.">
+              <img src="assets/shots/v5-crop-library.jpg" width="680" height="680" loading="lazy" alt="Prompts tab: an Add New button and the filters All, Text, Image and more above picture cards — Image prompt builder, tagged Midjourney +1, and Explain a concept, tagged ChatGPT +1, both starred, each showing its template with {{variables}} and a Use button.">
             </div>
           </li>
           <li>
@@ -508,7 +541,7 @@ footer a:hover { color: var(--ink); }
             <h3>Give the variables a value</h3>
             <p>Fill each variable, or let it fall back to the collection default, then the global one. Choose the target tool and the prompt is formatted for it. Text edits are kept in version history; the template itself stays as it is.</p>
             <div class="crop">
-              <img src="assets/shots/v4-crop-variables.jpg" width="680" height="680" loading="lazy" alt="Prompt detail: the template “{{subject}}, {{style}}, {{lighting}} lighting, shot on 85mm lens, highly detailed, coherent composition” with Edit by hand and, where Apple Intelligence is available, Improve with AI — on-device; the hint that edits are saved to History as new versions; and the Variables list with {{subject}} set to “a lighthouse on a sea cliff at dusk”.">
+              <img src="assets/shots/v5-crop-variables.jpg" width="680" height="680" loading="lazy" alt="Prompt detail: the template “{{subject}}, {{style}}, {{lighting}} lighting, shot on 85mm lens, highly detailed, coherent composition” with Edit by hand and, where Apple Intelligence is available, Improve with AI — on-device; the hint that edits are saved to History as new versions; and the Variables list with {{subject}} set to “a lighthouse on a sea cliff at dusk”.">
             </div>
           </li>
           <li>
@@ -516,15 +549,61 @@ footer a:hover { color: var(--ink); }
             <h3>Tap a pad in the keyboard</h3>
             <p>Switch to the PromptLux keyboard in a compatible app and tap a pad. The prompt's text is inserted into the current field with the values you set in the app; a variable that still has no value stays as <code>{{…}}</code> for you to fill in, and a small <code>{}</code> tab marks those pads. Hold a pad to peek at its name. There is an Undo button.</p>
             <div class="crop">
-              <img src="assets/shots/v4-crop-keyboard-everyday.jpg" width="680" height="680" loading="lazy" alt="The PromptLux keyboard with the Everyday deck and Pad glow on: an Add button and the deck chips Everyday and Studio above four rows of six pads — fox story pictures, a fox-eared microphone and a speech-bubble picture, neon glyph caps and label caps reading TL;DR, ELI5, SAY NO and POST, most with a small {} tab — then Undo, Space and Return keys.">
+              <img src="assets/shots/v5-crop-keyboard-everyday.jpg" width="680" height="680" loading="lazy" alt="The PromptLux keyboard with the Everyday deck: an Add button, a small grid icon and the deck chips Everyday (selected), Studio and Short Messages above four rows of six pads — fox story pictures, a fox-eared microphone and a speech-bubble picture, neon glyph caps and label caps reading TL;DR, ELI5, SAY NO and POST, most with a small {} tab — then Undo, Space, the Reply key with a sparkle, Return and a key to hide the keyboard.">
             </div>
           </li>
         </ol>
 
         <aside class="novice" aria-labelledby="novice-h">
           <h3 id="novice-h">New to custom keyboards?</h3>
-          <p>iOS lets an app provide an extra keyboard. You turn it on once in Settings, then switch to it with the globe key in any text field that accepts custom keyboards, and switch back the same way. The PromptLux keyboard shows your prompts as pads or list cards instead of letters. Some fields block custom keyboards; there, you use the app.</p>
+          <p>iOS lets an app provide an extra keyboard. You turn it on once in Settings, then switch to it with the globe key in any text field that accepts custom keyboards, and switch back the same way. The PromptLux keyboard shows your prompts and texts as pads or list cards instead of letters. Some fields block custom keyboards; there, you use the app.</p>
         </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2b. NEW IN VERSION 1.2 — three real captures of the 1.2 build (v5, crop and resize only) -->
+  <section id="new" class="sec wrap" aria-labelledby="new-h">
+    <div class="sec-grid">
+      <div class="sec-head">
+        <span class="numeral" aria-hidden="true">02</span>
+        <div class="marker m2" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div>
+        <div class="prose">
+          <p class="eyebrow">New in version 1.2</p>
+          <h2 id="new-h">Ready texts, your own texts, and a Reply key.</h2>
+          <p class="lead">Decks now hold texts as well as prompts. A pad inserts its text; you press send.</p>
+        </div>
+        <div class="frames">
+          <article class="frame">
+            <img class="shot" src="assets/shots/v5-keyboard-short-messages.jpg" width="460" height="1000" loading="lazy" alt="The PromptLux keyboard in a chat named Tonight, under the message “Doors at 11. You coming?”: the message field holds “On my way!”, not yet sent. Below the field, the keyboard: an Add button, a small grid icon and the deck chips Everyday, Studio and Short Messages, with Short Messages selected; twelve pads in two rows — OMW, an hourglass, HERE, a curved arrow, TRAFFIC, a house, OK!, THANKS, a magnifying glass, LATER, MEETING and a return arrow — and two rows of empty pads with a dashed outline and a plus; then Undo, Space, the Reply key with a sparkle, Return and a key to hide the keyboard.">
+            <div>
+              <h3>Ready texts on pads. Your own texts too.</h3>
+              <p>The new deck Short Messages holds twelve ready texts: On my way! · Running late · Just arrived · Leaving now · Stuck in traffic · Home soon · Sounds good · Thank you · Let me check · Call you later · In a meeting · Missed your message. In the free version the first six work; PromptLux Pro opens all twelve. A tap on a pad inserts the text into your message; you press send. A library from version 1.1 gets the deck at the first start of 1.2.</p>
+              <p>For a text of your own, tap the pencil key on the Deck tab. Draft Message opens: write up to 300 characters, choose a collection and a deck, then swipe through the faces for the pad (a label made from your words, or an icon) and tap one of ten colors. It is saved as a pad. The Message Designer is where you change a text pad’s words and face later.</p>
+            </div>
+          </article>
+
+          <article class="frame flip">
+            <img class="shot" src="assets/shots/v5-reply-key.jpg" width="460" height="1000" loading="lazy" alt="The PromptLux keyboard in a chat named Home, under the message “Can you pick up bread on your way home?”: the Reply panel, marked on-device draft, with Reply selected beside Reword. Their message shows that question; below it the tones Friendly (selected), Professional, Warm and Direct, a length button cut off at the edge, and three answers — Yes: “Sure, I'll pick it up on my way home.”, No: “Sorry, I can't pick up bread.” and Later: “Let me check and get back to you!” — above the line “Tap an answer to put it in your message. You press send.” and an Again button; then Undo, Space, the Reply key showing a close mark, Return and a key to hide the keyboard.">
+            <div>
+              <h3>The Reply key drafts. You press send.</h3>
+              <p>The Reply key sits between Space and Return. Hand it one message in one of three ways: tap Paste; select the message in the text field and tap Use selection; or, on an iPhone with an Action Button, press and hold it, and the chat on the screen is read on your iPhone. The answers fit the kind of message: a Yes, a No and Later for a yes-or-no question or a request; one reply for news, thanks or a greeting; only Later when just you know the answer. Pick Friendly, Professional, Warm or Direct, short or longer.</p>
+              <p>A tap on an answer inserts it into your message. You read it and press send; nothing is sent for you. Reword does the same for your own words. Both need an iPhone with Apple Intelligence switched on, and the Reply key drafts for English and German messages.</p>
+              <p>Reading the chat with the Action Button is off until you switch it on in the app, under Settings › Reply key. The shortcut “PromptLux Read Chat” comes with the app; one button there adds it. Paste needs Full Access; the Action Button may need it too.</p>
+            </div>
+          </article>
+
+          <article class="frame">
+            <img class="shot" src="assets/shots/v5-deck-tab-short-messages.jpg" width="460" height="1000" loading="lazy" alt="Deck tab with the Short Messages deck selected: the deck chips Everyday (cut off at the edge), Studio and Short Messages, a + button, a button with up and down arrows and the pencil key above twelve neon pads in two rows and two rows of empty pads with a dashed outline; below, the list On my way!, Running late, Just arrived, Leaving now, Stuck in traffic, Home soon, Sounds good, Thank you and Let me check, each with a tick, running on behind the tab bar with Prompts, GenAI, Deck, Collections and Settings.">
+            <div>
+              <h3>Text decks and prompt decks.</h3>
+              <p>A deck holds either texts or prompts, and its first pad decides which. Text decks have a blue chip with a chat bubble, prompt decks a teal chip with braces. Manage decks changes the order of the decks, renames one or takes it off the bar above the keyboard. You find it on the Deck tab (the button with the arrows, beside the pencil key) and in Settings.</p>
+              <p>A free pad can be filled right on the keyboard. It opens a panel with letter keys of its own: type a text or take the one you selected, pick an icon and tap Save. Saving there needs Full Access.</p>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -533,27 +612,31 @@ footer a:hover { color: var(--ink); }
   <section id="trust" class="sec wrap" aria-labelledby="trust-h">
     <div class="sec-grid">
       <div class="sec-head">
-        <span class="numeral" aria-hidden="true">02</span>
-        <div class="marker m2" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <span class="numeral" aria-hidden="true">03</span>
+        <div class="marker m3" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       </div>
       <div>
         <div class="prose">
           <p class="eyebrow">Privacy</p>
           <h2 id="trust-h">Private by design.</h2>
-          <p class="lead">Four plain facts about what PromptLux does with your prompts.</p>
+          <p class="lead">Five plain facts about what PromptLux does with your prompts and messages. Your data stays on your iPhone.</p>
         </div>
         <dl class="facts">
           <div>
             <dt>The keyboard works without Full Access.</dt>
-            <dd>Reading your prompts and inserting them from the keyboard needs no Full Access.</dd>
+            <dd>Showing your decks, inserting pads, filling variables and drafting a reply to text you selected need no Full Access.</dd>
           </div>
           <div>
-            <dt>Full Access only to add prompts from other apps.</dt>
-            <dd>It enables exactly one thing: the keyboard’s Add button, which hands the text you selected to the app — never surrounding text, never keystrokes.</dd>
+            <dt>Full Access for three optional things.</dt>
+            <dd>Add saves text you selected to your library; Save keeps a pad you fill on the keyboard; Paste in the Reply panel takes a message or screenshot you copied. Each works only when you tap it, and the keyboard never reads the text around the cursor. Reading the chat with the Action Button may need Full Access too.</dd>
           </div>
           <div>
-            <dt>No network code.</dt>
-            <dd>No server, no account, no analytics. Our App Store privacy answer: “Data Not Collected”.</dd>
+            <dt>No network code of its own.</dt>
+            <dd>No server, no account, no analytics. The app contacts one outside service only: the App Store, for purchases. Our App Store privacy answer: “Data Not Collected”.</dd>
+          </div>
+          <div>
+            <dt>Replies are drafted on your iPhone.</dt>
+            <dd>Apple Intelligence drafts on the device, and the app sends the message to nobody. A message you hand to the Reply key and its drafts are held in memory only, for five minutes at most.</dd>
           </div>
           <div>
             <dt>Works where custom keyboards are allowed.</dt>
@@ -569,8 +652,8 @@ footer a:hover { color: var(--ink); }
   <section id="proof" class="sec wrap" aria-labelledby="proof-h">
     <div class="sec-grid">
       <div class="sec-head">
-        <span class="numeral" aria-hidden="true">03</span>
-        <div class="marker m3" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <span class="numeral" aria-hidden="true">04</span>
+        <div class="marker m4" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       </div>
       <div>
         <div class="prose">
@@ -579,18 +662,18 @@ footer a:hover { color: var(--ink); }
         </div>
         <div class="frames">
           <article class="frame">
-            <img class="shot" src="assets/shots/v4-deck-studio.jpg" width="460" height="1000" loading="lazy" alt="Deck tab with the Studio deck selected and Pad glow on: the deck chips Everyday and Studio and a + button above 24 neon caps in four rows of six, coloured from orange at the top left through pink and violet to blue and green at the bottom right, each with a line-drawn glyph; below, the prompt list — Image prompt builder, Explain a concept, Story starter and more — with a tick beside each prompt already on the deck.">
+            <img class="shot" src="assets/shots/v5-keyboard-studio.jpg" width="460" height="1000" loading="lazy" alt="The PromptLux keyboard in a chat named New chat, under the messages “Hi! What would you like to create today?” and “One sec — grabbing my prompt”, with an empty message field. Below the field, the keyboard: an Add button, a small grid icon and the deck chips Everyday, Studio and Short Messages, with Studio selected; 24 neon caps in four rows of six, colored from orange at the top left through pink and violet to blue and green at the bottom right, each with a line-drawn glyph, many with a small {} tab; then Undo, Space, the Reply key with a sparkle, Return and a key to hide the keyboard.">
             <div>
-              <h3>Two ready decks. Add your own.</h3>
-              <p>A new library starts with two decks. Everyday mixes story pictures, cyberpunk key art, neon glyph caps and label caps; Studio is all neon glyph caps in a warm-to-cool sweep. On the Deck tab, switch decks with their chips, hold and drag a pad to move it, and tap + to add a deck for each kind of work — each holds up to 360 pads and gets its own chip on the keyboard. The keyboard comes in three styles: Prompt Deck, text list, and list with pictures.</p>
+              <h3>Three ready decks. Add your own.</h3>
+              <p>A new library starts with three decks. Everyday mixes story pictures, cyberpunk key art, neon glyph caps and label caps; Studio is all neon glyph caps in a warm-to-cool sweep; Short Messages holds twelve ready texts. On the keyboard, the deck chips switch between them. On the Deck tab, hold and drag a pad to move it, and tap + to add a deck for each kind of work — each holds up to 360 pads and gets its own chip on the keyboard. The keyboard comes in three styles: Prompt Deck, text list, and list with pictures.</p>
             </div>
           </article>
 
           <article class="frame flip">
-            <img class="shot" src="assets/shots/v4-key-editor.jpg" width="460" height="875" loading="lazy" alt="Key editor for the Prompt improver pad: a large crimson neon cap with a glowing sparkle glyph; the Key face choices Neon, Picture, Symbol and Text with Neon selected; a Pad colour grid of twelve swatches and a Custom colour control; the Cap choices Plain, Glyph and Label with Glyph selected.">
+            <img class="shot" src="assets/shots/v5-key-designer.jpg" width="460" height="875" loading="lazy" alt="Key Designer for the Prompt improver pad: a large crimson neon cap with a glowing sparkle glyph; the Key face choices Neon, Picture, Symbol and Text with Neon selected; a Pad color grid of twelve swatches and a Custom color control; the Cap choices Plain, Glyph and Label with Glyph selected.">
             <div>
               <h3>Design every pad.</h3>
-              <p>Hold a pad on the Deck tab and let go to redesign it: a neon cap in one of twelve colours or your own, carrying one of 67 Holo Grid glyphs or a short label; bundled story, cyberpunk or pixel key art; your own picture; a symbol; or styled text. A pad you never designed shows its prompt’s picture, or a neon cap with a short title. Turn on Pad glow in Settings › Appearance and the pad under your thumb lights up on the keyboard, and an idle deck runs its own light show; both follow Reduce Motion.</p>
+              <p>Hold a pad on the Deck tab and let go to redesign it: a neon cap in one of twelve colors or your own, carrying one of 67 Holo Grid glyphs or a short label; bundled story, cyberpunk or pixel key art; your own picture; a symbol; or styled text. A pad you never designed shows its prompt’s picture, or a neon cap with a short title. Turn on Pad glow in Settings › Appearance and the pad under your thumb lights up on the keyboard, and an idle deck runs its own light show; both follow Reduce Motion.</p>
             </div>
           </article>
 
@@ -603,15 +686,15 @@ footer a:hover { color: var(--ink); }
           </article>
 
           <article class="frame flip">
-            <img class="shot" src="assets/shots/v4-collections.jpg" width="460" height="1000" loading="lazy" alt="Collections screen: picture tiles for Work (Emails, meetings, docs — the day job; 9 prompts), GenAI (Prompt-craft for image &amp; LLM tools; 9 prompts), DevOps (Code review, incidents, shell; 8 prompts), Social (Posts, replies, announcements; 5 prompts) and Fun (Stories, games, curiosity; 5 prompts), and a New Collection tile.">
+            <img class="shot" src="assets/shots/v5-collections.jpg" width="460" height="1000" loading="lazy" alt="Collections screen: picture tiles for Work (Emails, meetings, docs — the day job; 9 prompts), GenAI (Prompt-craft for image &amp; LLM tools; 9 prompts), DevOps (Code review, incidents, shell; 8 prompts), Social (Posts, replies, announcements; 5 prompts) and Fun (Stories, games, curiosity; 5 prompts); a framed tile tagged Texts for Short Messages (Ready texts for chats; 12 texts); and a New Collection tile, partly behind the tab bar.">
             <div>
               <h3>Local library. Your backup.</h3>
-              <p>Prompts live in collections on your iPhone, and a collection carries its own variable defaults for the prompts in it. Export everything you wrote as one JSON file you own — prompts, versions, collections, variables, decks and settings. Attached pictures are not in that file.</p>
+              <p>Prompts and texts live in collections on your iPhone, and a collection carries its own variable defaults for the prompts in it. Export everything you wrote as one JSON file you own — prompts and texts, versions, collections, variables, decks and settings. Attached pictures are not in that file.</p>
             </div>
           </article>
 
           <article class="frame">
-            <img class="shot" src="assets/shots/v4-composer.jpg" width="460" height="1000" loading="lazy" alt="Composer “Style” step: illustrated tiles such as Photoreal, Cinematic, 3D render, Watercolor, Oil painting and Ink sketch, with Cinematic selected.">
+            <img class="shot" src="assets/shots/v5-composer.jpg" width="460" height="1000" loading="lazy" alt="Composer “Style” step: illustrated tiles such as Photoreal, Cinematic, 3D render, Watercolor, Oil painting and Ink sketch, with Cinematic selected.">
             <div>
               <h3>Build visual prompts, block by block.</h3>
               <p>The guided Composer walks through styles, settings, weather, lighting, materials and more — 148 built-in blocks, 124 of them illustrated; camera, mood and aspect use symbols. Add a subject and blocks of your own. The result is a complete, ordered prompt saved to your library. PromptLux does not generate images.</p>
@@ -626,14 +709,14 @@ footer a:hover { color: var(--ink); }
   <section id="craft" class="sec wrap" aria-labelledby="craft-h">
     <div class="sec-grid">
       <div class="sec-head">
-        <span class="numeral" aria-hidden="true">04</span>
-        <div class="marker m4" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <span class="numeral" aria-hidden="true">05</span>
+        <div class="marker m5" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       </div>
       <div>
         <div class="prose">
           <p class="eyebrow">Details</p>
           <h2 id="craft-h">Versions, formats, packs, export.</h2>
-          <p class="lead">Your library lives on your phone — in your hands and your own backups — and everything you wrote can leave with you.</p>
+          <p class="lead">Your library lives on your iPhone — in your hands and your own backups — and everything you wrote can leave with you.</p>
         </div>
         <dl class="craft">
           <div>
@@ -649,30 +732,37 @@ footer a:hover { color: var(--ink); }
             <dd>Midjourney (<code>--ar</code>, <code>--no</code>), Stable Diffusion, video tools and plain chat each get the syntax they expect.</dd>
           </div>
           <div>
-            <dt>7 offline packs, 96 prompts</dt>
+            <dt>8 offline packs: 95 prompts, 12 texts</dt>
             <dd>
               <ul class="packs" role="list">
-                <li>Code &amp; Dev</li><li>Image Editing</li><li>Image Generation</li><li>Video Generation</li><li>Visual Styles</li><li>Work &amp; Office</li><li>Writing &amp; Text</li>
+                <li>Code &amp; Dev</li><li>Image Editing</li><li>Image Generation</li><li>Video Generation</li><li>Visual Styles</li><li>Work &amp; Office</li><li>Writing &amp; Text</li><li>Short Messages</li>
               </ul>
+              <p>Seven prompt packs and one pack of ready texts come with the app. Adding a pack is part of PromptLux Pro.</p>
             </dd>
           </div>
           <div>
             <dt>Three keyboard styles</dt>
-            <dd>Prompt Deck — pads with pictures, glyphs or short labels and a chip for each deck (hold a pad to peek at its name) — a text list, or a list with pictures. In a new library, the keyboard starts in the Prompt Deck style. There is an Undo button.</dd>
+            <dd>Prompt Deck — pads with pictures, glyphs or short labels and a chip for each deck (hold a pad to peek at its name) — a text list, or a list with pictures. In a new library, the keyboard starts in the Prompt Deck style. There is an Undo button, and the Reply key sits between Space and Return.</dd>
           </div>
           <div>
             <dt>One JSON file you own</dt>
-            <dd>Export prompts, versions, collections, variables, decks and settings — text only, no attached pictures.</dd>
+            <dd>Export prompts and texts, versions, collections, variables, decks and settings — text only, no attached pictures.</dd>
           </div>
           <div>
             <dt>On-device intelligence, optional</dt>
-            <dd>With Apple Intelligence on iOS 26 and eligible devices: Prompt Doctor rewrites, variable value suggestions, Variablize, and title and collection suggestions. Everything else works without it.</dd>
+            <dd>On an iPhone with Apple Intelligence switched on: the Reply key’s drafts, for English and German messages, and Reword; Prompt Doctor rewrites, variable value suggestions, Variablize, title and collection suggestions, and rewording in the Message Designer. Everything else works without it.</dd>
           </div>
           <div>
             <dt>Requirements</dt>
-            <dd>iPhone, iOS 26 or later. The keyboard is an optional extension you enable in Settings.</dd>
+            <dd>iPhone, iOS 26 or later. The keyboard is an optional extension you enable in Settings. The app and its ready-made prompts and texts are in English.</dd>
           </div>
         </dl>
+
+        <aside class="novice" aria-labelledby="offer-h">
+          <h3 id="offer-h">Free to download. PromptLux Pro for everything.</h3>
+          <p>The free version has the first prompt deck with its first 12 pads, the first text deck with its first 6 pads, 20 of the 36 ready prompts, 6 of the 12 ready texts, room for 10 prompts and 6 texts of your own, and 4 of the 9 looks. Pads beyond that stay on the deck, grayed out.</p>
+          <p>PromptLux Pro opens every deck and every pad, all ready prompts and texts, the packs and all nine looks, with no limit on your own prompts and texts. It comes as a monthly plan, with the first week free for new subscribers, or as a one-time purchase. The monthly plan renews automatically until you cancel it; the App Store shows the price for your country. Nothing in your library is deleted when a plan ends. If you bought PromptLux before version 1.2, you keep everything.</p>
+        </aside>
       </div>
     </div>
   </section>
@@ -686,7 +776,7 @@ footer a:hover { color: var(--ink); }
             <source src="assets/video/demo-keyboard-loop.mp4" type="video/mp4">
           </video>
         </div>
-        <figcaption><span class="kind">Animation</span> Tap a pad, the prompt is inserted, the picture arrives. AI-generated animation with a stylised keyboard; not a recording of the app — the real screens are above.</figcaption>
+        <figcaption><span class="kind">Animation</span> Tap a pad, the prompt is inserted, the picture arrives. AI-generated animation with a stylized keyboard; not a recording of the app — the real screens are above.</figcaption>
       </figure>
       <figure class="art">
         <div class="art-frame art-video">
@@ -731,7 +821,7 @@ footer a:hover { color: var(--ink); }
     </nav>
     <p class="credits">Pictures marked “Illustration” are AI-generated with ChatGPT (OpenAI). They are brand art, not views of the product; their files are published unchanged and keep the Content Credentials OpenAI embedded. The framed screens are captures from the PromptLux app, resized and cropped; the Prompt Deck at the top of the page is redrawn in HTML and CSS from the app’s ready-made Everyday deck and its pad art.</p>
     <p class="credits">Deck glyphs, pad art and effects are original PromptLux artwork · no third-party icon sets</p>
-    <p class="credits">Third-party product names are trademarks of their owners; PromptLux is not affiliated with them.</p>
+    <p class="credits">Apple, iPhone and iCloud are trademarks of Apple Inc., registered in the U.S. and other countries. Apple Intelligence is a trademark of Apple Inc. App Store is a service mark of Apple Inc., registered in the U.S. and other countries. Other product names are trademarks of their owners. PromptLux is not affiliated with, sponsored or endorsed by Apple or any other company named here.</p>
     <p>PromptLux · made in Austria</p>
   </div>
 </footer>
